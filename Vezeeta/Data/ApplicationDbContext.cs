@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 using Vezeeta.Models;
+using Vezeeta.ViewModels;
 
 namespace Vezeeta.Data
 {
@@ -78,5 +79,6 @@ namespace Vezeeta.Data
         }
         public DbSet<Appointments> Appointments { get; set; }
         public DbSet<Reviews> Reviews { get; set; }
+        public DbSet<Vezeeta.ViewModels.BookInfo> BookInfo { get; set; } = default!;
     }
 }

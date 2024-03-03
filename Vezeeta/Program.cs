@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Vezeeta.Data;
 using Vezeeta.Models;
@@ -20,7 +21,9 @@ namespace Vezeeta
             builder.Services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders()
+                .AddUserStore<UserStore<AppUser, IdentityRole, ApplicationDbContext>>()
+                .AddRoleStore<RoleStore<IdentityRole, ApplicationDbContext>>();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

@@ -6,9 +6,9 @@ namespace Vezeeta.Models
     public class Reviews
     {
         public int ID { get; set; }
-        [Required(ErrorMessage ="Enter the review please!"),MinLength(10,ErrorMessage ="Minimum length should be more than or equal 10 characters")]
+        //[Required(ErrorMessage ="Enter the review please!"),MinLength(10,ErrorMessage ="Minimum length should be more than or equal 10 characters")]
         public string Review { get; set; }
-        [Required(ErrorMessage ="please add your rate")]
+        //[Required(ErrorMessage ="please add your rate")]
         public int Rate { get; set; }
         [ForeignKey("DoctorId")]
         public string DoctorId { get; set; }

@@ -9,11 +9,11 @@ using Vezeeta.Data;
 
 #nullable disable
 
-namespace Vezeeta.Data.Migrations
+namespace Vezeeta.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240221161246_AddTables")]
-    partial class AddTables
+    [Migration("20240303080641_update_Register_AppUser")]
+    partial class update_Register_AppUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -185,7 +185,6 @@ namespace Vezeeta.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -218,7 +217,6 @@ namespace Vezeeta.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Specialization")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -231,7 +229,7 @@ namespace Vezeeta.Data.Migrations
                     b.Property<DateTime>("birthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("fees")
+                    b.Property<int?>("fees")
                         .HasColumnType("int");
 
                     b.Property<string>("firstName")
@@ -245,7 +243,6 @@ namespace Vezeeta.Data.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("typeOfSpecialization")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

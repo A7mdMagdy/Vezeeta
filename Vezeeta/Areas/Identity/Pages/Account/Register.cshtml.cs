@@ -71,29 +71,35 @@ namespace Vezeeta.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
+            [Required(ErrorMessage = "You have to enter first name!"), MaxLength(50, ErrorMessage = "first name max length is 50"), MinLength(3, ErrorMessage = "first name min length is 3")]
+            [Display(Name = "First Name")]
+            public string firstName { get; set; }
+
+            [Required(ErrorMessage = "You have to enter last name!"), MaxLength(50, ErrorMessage = "last name max length is 50"), MinLength(3, ErrorMessage = "last name min length is 3")]
+            [Display(Name = "Last Name")]
+            public string lastName { get; set; }
+
+            [Required(ErrorMessage = "You have to choose your bitrhdate!"), DataType(DataType.DateTime)]
+            public DateTime birthDate { get; set; }
+
+            [Required(ErrorMessage = "You have to enter Address!"), MaxLength(100, ErrorMessage = "Address max length is 100"), MinLength(4, ErrorMessage = "Address min length is 4")]
+            public string Address { get; set; }
+            [Required]
+            [EnumDataType(typeof(Role))]
+            public Role Role { get; set; }
+            [EnumDataType(typeof(Gender))]
+            public Gender Gender { get; set; }
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
@@ -114,6 +120,12 @@ namespace Vezeeta.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.firstName = Input.firstName;
+                user.lastName = Input.lastName;
+                user.birthDate  = Input.birthDate;
+                user.Address = Input.Address;
+                user.Gender = Input.Gender;
+                //var userName= Input.firstName+"_"+Input.lastName;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

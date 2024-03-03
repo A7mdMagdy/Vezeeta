@@ -13,24 +13,22 @@ namespace Vezeeta.Models
         public DateTime birthDate { get; set; }
         [Required(ErrorMessage = "You have to enter Your Address!")]
         public string Address { get; set; }
+        [EnumDataType(typeof(Role))]
         public Role Role { get; set; }
         [EnumDataType(typeof(Gender))]
         public Gender Gender { get; set; }
-        [Required(ErrorMessage = "You have to enter Your Specialization!")]
-        public string Specialization { get; set; }
-        [Required(ErrorMessage = "You have to enter Your type of Specialization!")]
-        public string typeOfSpecialization { get; set; }
-        public int fees { get; set; }
-        [Required(ErrorMessage = "You have to enter Your Image!")]
-        public string Image { get; set; }
-
+        //[Required(ErrorMessage = "You have to enter Your Specialization!")]
+        public string? Specialization { get; set; }
+        //[Required(ErrorMessage = "You have to enter Your type of Specialization!")]
+        public string? typeOfSpecialization { get; set; }
+        public int? fees { get; set; }
+        //[Required(ErrorMessage = "You have to enter Your Image!")]
+        public string? Image { get; set; }
         //public virtual List<Appointments>? PatientAppointments { get; set; }
         //public virtual List<Appointments>? DoctorAppointments { get; set; }
         //public virtual List<Reviews>? Reviews { get; set; }
-
-        public virtual List<Appointments> DoctorAppointments { get; set; }
-        public virtual List<Appointments> PatientAppointments { get; set; }
-
+        public virtual List<Appointments>? DoctorAppointments { get; set; }
+        public virtual List<Appointments>? PatientAppointments { get; set; }
         public virtual List<Reviews>? DoctorReviews { get; set; }
         public virtual List<Reviews>? PatientReviews { get; set; }
     }

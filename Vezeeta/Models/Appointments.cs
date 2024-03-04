@@ -13,7 +13,7 @@ namespace Vezeeta.Models
 
         [ForeignKey("DoctorId")]
         public string DoctorId { get; set; }
-        public virtual AppUser Doctor { get; set; }
+        public virtual AppUser? Doctor { get; set; }
 
         [ForeignKey("PatientId")]
         public string? PatientId { get; set; }

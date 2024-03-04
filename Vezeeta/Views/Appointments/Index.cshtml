@@ -1,0 +1,79 @@
+﻿
+@model List<Vezeeta.Models.Appointments>
+
+<h2>@ViewBag.id</h2>
+<a asp-controller="Doctor" asp-action="Details" asp-route-id="@ViewBag.id" style="background-color:#0070CD; color:white;" class="text-decoration-none btn">Back to Appointments</a>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h2>Booked Appointments</h2>
+        <div class="table-responsive">
+            @if (Model != null && Model.Any(a => a.Booked))
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Is Paid</th>
+                            <th>Fees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var appointment in Model.Where(a => a.Booked))
+                        {
+                            <tr>
+                                <td>@(appointment.Patient.firstName) @(appointment.Patient.lastName)</td>
+                                <td>@appointment.Date.ToShortDateString()</td>
+                                <td>@appointment.Time</td>
+                                <td>@(appointment.isPaid ? "Yes" : "No")</td>
+                                <td>@appointment.Fees</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No booked appointments available</p>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Your Free Appointments</h2>
+        <div class="table-responsive">
+            @if (Model != null && Model.Any(a => !a.Booked))
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Fees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var appointment in Model.Where(a => !a.Booked))
+                        {
+                            <tr>
+                                <td>@appointment.Date.ToShortDateString()</td>
+                                <td>@appointment.Time</td>
+                                <td>@appointment.Fees</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No unbooked appointments available</p>
+            }
+        </div>
+    </div>
+</div>
+
+<div style="text-align:end;">
+    <a class="text-decoration-none btn" style="background-color:#0070CD; color:white;" asp-controller="Appointments" asp-action="Create" asp-route-id="@Model.Select(a=>a.DoctorId).FirstOrDefault()">Add Free Appointment</a>
+</div>

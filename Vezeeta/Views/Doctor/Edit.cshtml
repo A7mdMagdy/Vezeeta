@@ -1,0 +1,259 @@
+﻿@model Vezeeta.Models.AppUser
+<style>
+    .img-account-profile {
+        height: 10rem;
+    }
+
+    .rounded-circle {
+        border-radius: 50% !important;
+    }
+
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    }
+
+        .card .card-header {
+            font-weight: 500;
+        }
+
+    .card-header:first-child {
+        border-radius: 0.35rem 0.35rem 0 0;
+    }
+
+    .card-header {
+        padding: 1rem 1.35rem;
+        margin-bottom: 0;
+        background-color: rgba(33, 40, 50, 0.03);
+        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+    }
+
+    .form-control, .dataTable-input {
+        display: block;
+        width: 100%;
+        padding: 0.875rem 1.125rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1;
+        color: #69707a;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #c5ccd6;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.35rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .nav-borders .nav-link.active {
+        color: #0061f2;
+        border-bottom-color: #0061f2;
+    }
+
+    .nav-borders .nav-link {
+        color: #69707a;
+        border-bottom-width: 0.125rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+</style>
+ <form asp-action="Edit" method="post">
+    <div class="container-xl px-4 mt-4">
+        <div class="row">
+            <div class="col-xl-4">
+                <!-- Profile picture card-->
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-body text-center">
+                        <!-- Profile picture image-->
+                        <img class="img-account-profile rounded-circle mb-2" src="~/images/@Model.Image" alt="">
+                        <!-- Profile picture upload button-->
+@*                         <button class="btn btn-primary mt-3" type="button">Upload new image</button>
+ *@                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <!-- Account details card-->
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                            <input type="hidden" asp-for="Id" />
+                            <div class="mb-3 form-group">
+                                <label asp-for="UserName" class="small mb-1">User Name</label>
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="firstName" class="small mb-1">First Name</label>
+                                    <input asp-for="firstName" class="form-control" />
+                                    <span asp-validation-for="firstName" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="lastName" class="small mb-1">Last Name</label>
+                                    <input asp-for="lastName" class="form-control" />
+                                    <span asp-validation-for="lastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="Address" class="small mb-1">Address</label>
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="fees" class="small mb-1">Fees</label>
+                                    <input asp-for="fees" class="form-control" />
+                                    <span asp-validation-for="fees" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label asp-for="Email" class="small mb-1">Email</label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="PhoneNumber" class="small mb-1">Phone Number</label>
+                                    <input asp-for="PhoneNumber" class="form-control" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="birthDate" class="small mb-1">Birth-Date</label>
+                                    <input asp-for="birthDate" class="form-control" />
+                                    <span asp-validation-for="birthDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row gx-3 mb-3 form-group">
+                                <label asp-for="Gender" class="small mb-1"></label>
+                                <select asp-for="Gender" class="form-control w-100 h-100">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="Specialization" class="small mb-1"></label>
+                                    <input asp-for="Specialization" class="form-control" />
+                                    <span asp-validation-for="Specialization" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="typeOfSpecialization" class="small mb-1">Type Of Specialization</label>
+                                    <input asp-for="typeOfSpecialization" class="form-control" />
+                                    <span asp-validation-for="typeOfSpecialization" class="text-danger"></span>
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <label asp-for="Image"></label>
+                            <input asp-for="Image" class="form-control" type="file" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Save changes</button>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</form>
+<a asp-action="Details" asp-route-id="@ViewBag.id">Back to Details</a>
+
+@* <h1>Edit Doctor</h1>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="firstName"></label>
+        <input asp-for="firstName" class="form-control" />
+        <span asp-validation-for="firstName" class="text-danger"></span>
+    </div>   
+    
+    <div class="form-group">
+        <label asp-for="lastName"></label>
+        <input asp-for="lastName" class="form-control" />
+        <span asp-validation-for="lastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>    
+    
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>   
+
+    <div class="form-group">
+        <label asp-for="birthDate"></label>
+        <input asp-for="birthDate" class="form-control" />
+        <span asp-validation-for="birthDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Gender"></label>
+        <select asp-for="Gender" class="form-control">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Specialization"></label>
+        <input asp-for="Specialization" class="form-control" />
+        <span asp-validation-for="Specialization" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="typeOfSpecialization"></label>
+        <input asp-for="typeOfSpecialization" class="form-control" />
+        <span asp-validation-for="typeOfSpecialization" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="fees"></label>
+        <input asp-for="fees" class="form-control" />
+        <span asp-validation-for="fees" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Image"></label>
+        <input asp-for="Image" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+@*     <div class="form-group">
+        <label asp-for="Image"></label>
+        <input asp-for="Image" class="form-control" type="file">
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div> *@
+
+  @*   <div class="form-group">
+        <label for="imageInput">Image</label>
+        <input type="file" id="imageInput" name="Image" class="form-control-file">
+    </div> 
+</form>
+    *@
+ 
+
+

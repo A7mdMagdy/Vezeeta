@@ -18,6 +18,8 @@ namespace Vezeeta
             //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
             //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
             builder.Services.AddScoped<IDoctorRepository, DoctorRepoService>();
+            builder.Services.AddScoped<IAppointmentsRepository, AppointmentsRepoService>();
+            builder.Services.AddScoped<IReviewsRepository, ReviewsRepoService>();
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>

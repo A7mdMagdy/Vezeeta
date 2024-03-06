@@ -4,8 +4,8 @@ namespace Vezeeta.ViewModels
 {
     public class DoctorViewModel
     {
-        [Key]
-        public string Id { get; set; }
+        //[Key]
+        //public string Id { get; set; }
         [Required(ErrorMessage = "You have to enter first name!"), MaxLength(50, ErrorMessage = "first name max length is 50"), MinLength(3, ErrorMessage = "first name min length is 3")]
         public string firstName { get; set; }
         [Required(ErrorMessage = "You have to enter last name!"), MaxLength(50, ErrorMessage = "last name max length is 50"), MinLength(3, ErrorMessage = "last name min length is 3")]

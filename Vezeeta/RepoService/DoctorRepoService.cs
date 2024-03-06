@@ -28,7 +28,7 @@ namespace Vezeeta.RepoServices
 		}
 		public AppUser GetDoctorDetails(string id)
 		{
-			return Context.Users.Include(user => user.DoctorReviews).ThenInclude(review => review.Patient).Where(c => c.Email == id).FirstOrDefault();
+            return Context.Users.Include(user => user.DoctorReviews).ThenInclude(review => review.Patient).Where(c => c.Id == id).FirstOrDefault();
 		}
 
 
@@ -42,7 +42,7 @@ namespace Vezeeta.RepoServices
 		}
 		public void UpdateDoctor(string id, AppUser std)
 		{
-            AppUser UpdateDoc = Context.Users.FirstOrDefault(d=>d.Email == id);
+            AppUser UpdateDoc = Context.Users.FirstOrDefault(d=>d.Id == id);
 			if (UpdateDoc != null)
 			{
                 UpdateDoc.UserName = std.UserName;

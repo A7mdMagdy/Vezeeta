@@ -115,8 +115,6 @@ namespace Vezeeta.Controllers
                 user.Specialization = doctorViewModel.Specialization;
                 user.typeOfSpecialization = doctorViewModel.typeOfSpecialization;
                 DoctorRepo.UpdateDoctor(id,user);
-                    
-               
                 return RedirectToAction(nameof(Index));
             }
             return View(doctorViewModel);

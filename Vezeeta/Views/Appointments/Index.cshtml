@@ -1,6 +1,6 @@
 ﻿
 @model List<Vezeeta.Models.Appointments>
-
+<div class="container">
 <h2>@ViewBag.id</h2>
 <a asp-controller="Doctor" asp-action="Details" asp-route-id="@ViewBag.id" style="background-color:#0070CD; color:white;" class="text-decoration-none btn">Back to Appointments</a>
 
@@ -76,4 +76,5 @@
 
 <div style="text-align:end;">
     <a class="text-decoration-none btn" style="background-color:#0070CD; color:white;" asp-controller="Appointments" asp-action="Create" asp-route-id="@Model.Select(a=>a.DoctorId).FirstOrDefault()">Add Free Appointment</a>
+</div>
 </div>

@@ -1,15 +1,430 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    //Layout = null;
 }
 
-<div class="text-center">
-    @if (User.Identity.IsAuthenticated)
-    {
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    }
-    else
-    {
-        <h1 class="display-4">Not Authenticated</h1>
-    }
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@ViewData["Title"] - Vezeeta</title>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/Vezeeta.styles.css" asp-append-version="true" />
+<!-- Vendor CSS Files -->
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+ <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"> 
+<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+<link href="assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+
+
+<div style="position:relative;">
+    <section id="hero" style="z-index:-1;">
+        <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+            <div class="carousel-inner " role="listbox">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active " style="background-image: url(assets/img/slide/slide-1.jpg)">
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+                </div>
+
+            </div>
+
+            @*  <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a> *@
+
+        </div>
+    </section><!-- End Hero -->
+    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true" style="background-color:#3fbbc0;border-radius:50%;padding:30px 30px;"></span>
+    </a>
+
+    <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true" style="background-color:#3fbbc0;border-radius:50%;padding:30px 30px;"></span>
+    </a>
 </div>
+@* <div class="text-center">
+<h1 class="display-4">Welcome</h1>
+</div> *@
+@* new section *@
+<div class="container">
+
+    <section id="featured-services" class="featured-services">
+
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+
+                        <div class="icon"><i class="fas fa-heartbeat"></i></div>
+
+                        <h4 class="title"><a href="">Emergency Medical Response</a></h4>
+
+                        <p class="description">Our highly trained medical team is available 24/7 to respond rapidly to medical emergencies. Whether it's a sudden illness, injury, or any other medical crisis.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+
+                        <div class="icon"><i class="fas fa-pills"></i></div>
+
+                        <h4 class="title"><a href="">Telemedicine Consultations</a></h4>
+
+                        <p class="description">Access medical advice and consultations remotely through our telemedicine services. Speak with qualified healthcare professionals via video or phone call for non-emergency medical concerns.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+
+                        <div class="icon"><i class="fas fa-thermometer"></i></div>
+
+                        <h4 class="title"><a href="">Rehabilitation Services</a></h4>
+
+                        <p class="description">Recover and rehabilitate effectively with our comprehensive rehabilitation services. Whether you're recovering from surgery, injury, or managing a chronic condition.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+
+                        <div class="icon"><i class="fas fa-dna"></i></div>
+
+                        <h4 class="title"><a href="">Home Healthcare</a></h4>
+
+                        <p class="description">Receive quality medical care in the comfort of your own home with our home healthcare services. Our skilled professionals provide a wide range of medical treatments, nursing care, and assistance.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section><!-- End Featured Services Section -->
+    <!-- ======= Cta Section ======= -->
+
+    <section id="cta" class="cta">
+
+        <div class="container" data-aos="zoom-in">
+
+            <div class="text-center">
+
+                <h3>In an emergency? Need help now?</h3>
+
+                <p> In an emergency, every second counts. Whether it's a medical crisis, a natural disaster, or a sudden accident, swift action is crucial. In these critical moments, individuals often find themselves overwhelmed, unsure of what steps to take next.</p>
+
+                <a class="cta-btn scrollto" href="\pateint\Book">Make an Make an Appointment</a>
+
+            </div>
+
+        </div>
+
+    </section><!-- End Cta Section -->
+    <!-- ======= Features Section ======= -->
+
+    <section id="features" class="features">
+
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+
+                <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right">
+
+                    <div class="icon-box mt-5 mt-lg-0">
+
+                        <i class="bx bx-receipt"></i>
+
+                        <h4>Physical Therapy</h4>
+
+                        <p>Rehabilitation and exercise programs to restore mobility and function.</p>
+
+                    </div>
+
+                    <div class="icon-box mt-5">
+
+                        <i class="bx bx-cube-alt"></i>
+
+                        <h4>Cancer Care</h4>
+
+                        <p>Comprehensive cancer treatment including chemotherapy, radiation, and supportive care services.</p>
+
+                    </div>
+
+                    <div class="icon-box mt-5">
+
+                        <i class="bx bx-images"></i>
+
+                        <h4>Geriatric Care</h4>
+
+                        <p>Specialized healthcare for the elderly, including geriatric assessments and support services.</p>
+
+                    </div>
+
+                    <div class="icon-box mt-5">
+
+                        <i class="bx bx-shield"></i>
+
+                        <h4>Pain Management</h4>
+
+                        <p>Multidisciplinary approach to alleviate chronic pain and improve quality of life.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/features.jpg");' data-aos="zoom-in"></div>
+
+            </div>
+
+        </div>
+
+    </section><!-- End Features Section -->
+    <!-- ======= Doctors Section ======= -->
+
+    <section id="doctors" class="doctors section-bg">
+
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+
+                <h2>Doctors</h2>
+
+                <p>Doctors play a crucial role in healthcare, providing expert medical care to patients across all ages and demographics. They possess in-depth knowledge of human anatomy, physiology, and medical science, allowing them to assess symptoms, order diagnostic tests, and develop treatment plans tailored to each patient's unique needs.</p>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+
+                    <div class="member" data-aos="fade-up" data-aos-delay="100">
+
+                        <div class="member-img">
+
+                            <img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="">
+
+                            <div class="social">
+
+                                <a href=""><i class="bi bi-twitter"></i></a>
+
+                                <a href=""><i class="bi bi-facebook"></i></a>
+
+                                <a href=""><i class="bi bi-instagram"></i></a>
+
+                                <a href=""><i class="bi bi-linkedin"></i></a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="member-info">
+
+                            <h4>Walter White</h4>
+
+                            <span>Chief Medical Officer</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+
+                    <div class="member" data-aos="fade-up" data-aos-delay="200">
+
+                        <div class="member-img">
+
+                            <img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt="">
+
+                            <div class="social">
+
+                                <a href=""><i class="bi bi-twitter"></i></a>
+
+                                <a href=""><i class="bi bi-facebook"></i></a>
+
+                                <a href=""><i class="bi bi-instagram"></i></a>
+
+                                <a href=""><i class="bi bi-linkedin"></i></a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="member-info">
+
+                            <h4>Sarah Jhonson</h4>
+
+                            <span>Anesthesiologist</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+
+                    <div class="member" data-aos="fade-up" data-aos-delay="300">
+
+                        <div class="member-img">
+
+                            <img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt="">
+
+                            <div class="social">
+
+                                <a href=""><i class="bi bi-twitter"></i></a>
+
+                                <a href=""><i class="bi bi-facebook"></i></a>
+
+                                <a href=""><i class="bi bi-instagram"></i></a>
+
+                                <a href=""><i class="bi bi-linkedin"></i></a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="member-info">
+
+                            <h4>William Anderson</h4>
+
+                            <span>Cardiology</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+
+                    <div class="member" data-aos="fade-up" data-aos-delay="400">
+
+                        <div class="member-img">
+
+                            <img src="assets/img/doctors/doctors-4.jpg" class="img-fluid" alt="">
+
+                            <div class="social">
+
+                                <a href=""><i class="bi bi-twitter"></i></a>
+
+                                <a href=""><i class="bi bi-facebook"></i></a>
+
+                                <a href=""><i class="bi bi-instagram"></i></a>
+
+                                <a href=""><i class="bi bi-linkedin"></i></a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="member-info">
+
+                            <h4>Amanda Jepson</h4>
+
+                            <span>Neurosurgeon</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section><!-- End Doctors Section -->
+    <!-- ======= Gallery Section ======= -->
+
+    <section id="gallery" class="gallery">
+
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+
+                <h2>Gallery</h2>
+
+                <p>Vezeeta serve as hubs for medical diagnosis, treatment, and rehabilitation across various specialties, including emergency medicine, surgery, internal medicine, pediatrics, obstetrics and gynecology, and more. They offer comprehensive care to patients of all ages and backgrounds, addressing both acute and chronic health conditions</p>
+
+            </div>
+
+            <div class="gallery-slider swiper">
+
+                <div class="swiper-wrapper align-items-center">
+
+                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
+
+                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
+
+                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
+
+                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
+
+                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
+
+                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
+
+                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
+
+                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
+
+                </div>
+
+                <div class="swiper-pagination"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/js/main.js"></script>

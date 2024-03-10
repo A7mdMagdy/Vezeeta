@@ -5,6 +5,8 @@ namespace Vezeeta.RepoServices
     public interface IAppointmentsRepository
     {
         public List<Appointments> GetAllAppointments(string id); // doctor id filter
+
+        public List<Appointments> GetAllAppointments();
         public Appointments GetAppointmentDetails(int id);
         public void InsertAppointment(Appointments appointment);
         public void UpdateAppointment(int id, Appointments appointment);

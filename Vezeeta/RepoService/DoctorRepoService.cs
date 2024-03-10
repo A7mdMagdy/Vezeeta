@@ -24,12 +24,18 @@ namespace Vezeeta.RepoServices
 		//}
 		public List<AppUser> GetAllDoctor()
 		{
-			return Context.Users.Where(user => user.Role == Role.Doctor).ToList(); 
-		}
+            return Context.Users.Include(user => user.DoctorAppointments.Where(appointment => !appointment.Booked))
+                                .Where(user => user.Role == Role.Doctor).ToList();
+        }
 		public AppUser GetDoctorDetails(string id)
 		{
-            return Context.Users.Include(user => user.DoctorReviews).ThenInclude(review => review.Patient).Where(c => c.Id == id).FirstOrDefault();
-		}
+            return Context.Users.Include(user => user.DoctorAppointments.Where(appointment => !appointment.Booked))
+                                .ThenInclude(appointment => appointment.Patient)
+                                .Include(user => user.DoctorReviews)
+                                .ThenInclude(review => review.Patient)
+                                .Where(user => user.Id == id)
+                                .FirstOrDefault();
+        }
 
 
         public void InsertDoctor(AppUser std)

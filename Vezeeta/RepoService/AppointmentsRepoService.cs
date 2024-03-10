@@ -24,6 +24,13 @@ namespace Vezeeta.RepoServices
             return Appoints;
         }
 
+        public List<Appointments> GetAllAppointments()
+        {
+           
+            var Appoints = Context.Appointments.Include(a => a.Patient).Include(a => a.Doctor).ToList();
+            return Appoints;
+        }
+
         public Appointments GetAppointmentDetails(int id)
         {
             return Context.Appointments.Find(id);

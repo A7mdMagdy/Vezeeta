@@ -125,6 +125,7 @@ namespace Vezeeta.Areas.Identity.Pages.Account
                 user.birthDate  = Input.birthDate;
                 user.Address = Input.Address;
                 user.Gender = Input.Gender;
+                user.Role = Input.Role;
                 //var userName= Input.firstName+"_"+Input.lastName;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);

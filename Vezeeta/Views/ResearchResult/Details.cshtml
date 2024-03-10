@@ -1,7 +1,6 @@
 ﻿@model Vezeeta.Models.AppUser
-
 <style>
-    .user-rating {
+.user-rating {
         font-size: 24px;
     }
 
@@ -31,15 +30,48 @@
         display: none;
     }
 
+    .styled-select {
+        display: inline-block;
+        position: relative;
+        padding: 8px 38px 8px 16px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+        .styled-select::after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        /* Optional: Add more styles for focus, hover, etc. */
+
+        .styled-select:focus, .styled-select:hover {
+            border-color: #999;
+        }
+        /* Optional: Add more styles for the dropdown arrow icon */
+
+        .styled-select::after {
+            color: #999;
+        }
+
 </style>
-<h2>Doctor Details</h2>
+<link href="~/assets/css/stylesheet.css" rel="stylesheet" />
+<div class="container">
 <div class="row">
     <div class="col-md-8">
-        <div class="card mb-4 card-hover" style="max-height: 90%; width:92%; border-radius: 5%;">
+        <div class="card mb-4 card-hover rounded" style="max-height: 90%; width:92%;">
             <div class="row g-0">
                 <div class="col-md-4">
                     <div class="user-image" style="margin-top: 7px; margin-left:7px">
-                        <img src="~/images/@Url.Content(Model.Image)" class="img-fluid rounded-circle border border-dark m-4" alt="User Image" style="border-width: 4px; border-style: solid;width: 170px; height: 170px;" />
+                        <img src="~/images/@Url.Content(Model.Image)" class="img-fluid rounded-circle border border-dark m-4" alt="User Image" style="border-width: 4px; border-style: solid;width: 150px; height: 150px;" />
                     </div>
                 </div>
 
@@ -94,9 +126,9 @@
                 Booking Information
             </div>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-danger">Go somewhere</a>
+                <h5 class="card-title">Details</h5>
+                <p class="card-text" style="margin-top: 2px ;margin-bottom: 4px">&#128184;<span style="color:#898B8E;font-size:15px;font-weight:inherit">Fees:</span> <span style="color:#898B8E;font-size:15px;font-weight:inherit">@Model.fees EGP</span></p>
+                <p class="card-text" style="margin-top: 2px;margin-bottom: 4px;color:#2985D3;"><i class="bi bi-hourglass-split"></i>Waiting Time : 37 Minutes</p>
             </div>
             <div class="card-footer text-body-secondary">
                 <p class="card-text" style="color:#2985D3;margin-top: 2px;margin-bottom: 4px">
@@ -107,24 +139,25 @@
     </div>
 </div>
 
-<div class="card mb-4 card-hover" style="max-width: 100%; width:60%; border-radius: 5%;">
+<div class="card mb-4 card-hover rounded" style="max-width: 100%; width:60%;">
 
-   
+    <div class="m-3">
     <h6 style="color:#848383">  <i class="bi bi-info-square"></i>   About The Doctor</h6>
     <p class="card-text" style="color:#2985D3;margin-bottom: 3px;margin-left:50px">
         &#129658;<span style="color:#898B8E;font-size:15px;font-weight:inherit">Specialized in </span>
         <span style="font-weight:700">@Model.typeOfSpecialization</span>
     </p>
+    </div>
 </div>
-<div class="card mb-4 card-hover" style="max-width: 100%; width:60%; border-radius: 5%;">
+<div class="card mb-4 card-hover" style="max-width: 100%; width:60%;">
     <div class="user-rating" style="margin-top:1px">
-    <div class="card-body">
-        <h5 class="card-title"><i class="bi bi-star-half"></i> Patient Reviews</h5>
-        @foreach (var review in Model.DoctorReviews)
-        {
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Patient Name: @review.Patient.firstName @review.Patient.lastName</h6>
+        <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-star-half"></i> Patient Reviews</h5>
+            @foreach (var review in Model.DoctorReviews)
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Patient Name: @review.Patient.firstName @review.Patient.lastName</h6>
                         @if (review.Rate >= 5)
                         {
                             @* <input type="radio" id="star5_@Model.Id" name="rating_@Model.Id" value="5" class="star" checked /> *@
@@ -133,13 +166,13 @@
 
                         @if (review.Rate >= 4)
                         {
-                           @*  <input type="radio" id="star4_@Model.Id" name="rating_@Model.Id" value="4" class="star" checked /> *@
+                            @*  <input type="radio" id="star4_@Model.Id" name="rating_@Model.Id" value="4" class="star" checked /> *@
                             <label for="star4_@Model.Id" class="star" style="color: orange" data-value="4">&#9733;</label>
                         }
 
                         @if (review.Rate >= 3)
                         {
-                           @*  <input type="radio" id="star3_@Model.Id" name="rating_@Model.Id" value="3" class="star" checked /> *@
+                            @*  <input type="radio" id="star3_@Model.Id" name="rating_@Model.Id" value="3" class="star" checked /> *@
                             <label for="star3_@Model.Id" class="star" style="color: orange" data-value="3">&#9733;</label>
                         }
 
@@ -155,11 +188,12 @@
                             <label for="star1_@Model.Id" class="star" style="color: orange" data-value="1">&#9733;</label>
                         }
 
-                    <p class="card-text">Review: @review.Review</p>
-                    <!-- Add more review properties as needed -->
+                        <p class="card-text">Review: @review.Review</p>
+                        <!-- Add more review properties as needed -->
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 </div>
 </div>
@@ -167,6 +201,86 @@
 
 
 <!-- Add more details as needed -->
+<!-- / Begin Body -->
+@* <div class='swanky'>
+    <!-- /////////// Begin Dropdown //////////// -->
+    <div class='swanky_wrapper'>
+        <input id='Dashboard' name='radio' type='radio'>
+        <label for='Dashboard'>
+            <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/dash.png'>
+            <span>Dashboard</span>
+            <div class='lil_arrow'></div>
+            <div class='bar'></div>
+            <div class='swanky_wrapper__content'>
+                <ul>
+                    <li>Tools</li>
+                    <li>Reports</li>
+                    <li>Analytics</li>
+                    <li>Code Blocks</li>
+                </ul>
+            </div>
+        </label>
+        <input id='Sales' name='radio' type='radio'>
+        <label for='Sales'>
+            <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/del.png'>
+            <span>Sales</span>
+            <div class='lil_arrow'></div>
+            <div class='bar'></div>
+            <div class='swanky_wrapper__content'>
+                <ul>
+                    <li>New Sales</li>
+                    <li>Expired Sales</li>
+                    <li>Sales Reports</li>
+                    <li>Deliveries</li>
+                </ul>
+            </div>
+        </label>
+        <input id='Messages' name='radio' type='radio'>
+        <label for='Messages'>
+            <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/mess.png'>
+            <span>Messages</span>
+            <div class='lil_arrow'></div>
+            <div class='bar'></div>
+            <div class='swanky_wrapper__content'>
+                <ul>
+                    <li>Inbox</li>
+                    <li>Outbox</li>
+                    <li>Sent</li>
+                    <li>Archived</li>
+                </ul>
+            </div>
+        </label>
+        <input id='Users' name='radio' type='radio'>
+        <label for='Users'>
+            <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/users.png'>
+            <span>Users</span>
+            <div class='lil_arrow'></div>
+            <div class='bar'></div>
+            <div class='swanky_wrapper__content'>
+                <ul>
+                    <li>New User</li>
+                    <li>User Groups</li>
+                    <li>Permissions</li>
+                    <li>Passwords</li>
+                </ul>
+            </div>
+        </label>
+        <input id='Settings' radio='radio' type='radio'>
+        <label for='Settings'>
+            <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/set.png'>
+            <span>Settings</span>
+            <div class='lil_arrow'></div>
+            <div class='swanky_wrapper__content'>
+                <ul>
+                    <li>Databases</li>
+                    <li>Design</li>
+                    <li>Change User</li>
+                    <li>Log Out</li>
+                </ul>
+            </div>
+        </label>
+    </div>
+    <!-- /////////// End Dropdown //////////// -->
+</div> *@
 
-<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-<a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+

@@ -37,15 +37,28 @@ namespace Vezeeta.Controllers
             return View(patientappointments);
         }
 
-        // <<<<<<<<<  Book Page  >>>>>>>>>>>>>
-        [HttpGet]
-        public ActionResult Book()
+        public string Currentdoc { get; set; }
+
+        public void OnGet(string Currentdoc)
         {
-            return View();
+            this.Currentdoc = Currentdoc;
         }
 
+        // <<<<<<<<<  Book Page  >>>>>>>>>>>>>
+        [HttpGet]
+        public async Task<ActionResult> Book(string Currentdoc, string Appo)
+        {
+
+            var doctor = await userManager.FindByIdAsync(Currentdoc);
+            ViewBag.currentDoctor = doctor;
+            ViewBag.Appo = Appo;
+            var patient = await userManager.FindByEmailAsync(User.Identity.Name);
+            return View(patient);
+        }
+
+
         // <<<<<<<<<  Stripe Page  >>>>>>>>>>>>>
-        //[HttpPost]
+        [HttpPost]
         public async Task<ActionResult> Book(BookInfo bookInfo)
         {
 

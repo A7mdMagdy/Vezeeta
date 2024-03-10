@@ -1,10 +1,10 @@
-﻿@model Vezeeta.ViewModels.BookInfo
-
+﻿@model Vezeeta.Models.AppUser
 @{
     ViewData["Title"] = "Book";
+    AppUser CurrentDoctor = ViewBag.currentDoctor;
 }
 <div class="container">
-<h1>Book An Appointment (@User.Identity.Name)</h1>
+<h1 class="text-info">Book An Appointment</h1>
 <hr />
 
 <div class="row">
@@ -12,24 +12,29 @@
         <form asp-action="Book" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="firstName" class="control-label"></label>
+                    <input asp-for="firstName" class="form-control" placeholder="@Model.firstName" />
+                <span asp-validation-for="firstName" class="text-danger"></span>
             </div>
+                <div class="form-group">
+                    <label asp-for="lastName" class="control-label"></label>
+                    <input asp-for="lastName" class="form-control" placeholder="@Model.lastName" />
+                    <span asp-validation-for="lastName" class="text-danger"></span>
+                </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                    <input asp-for="Email" class="form-control" placeholder="@Model.Email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
+                    <input asp-for="Address" class="form-control" placeholder="@Model.Address" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="phoneNumber" class="control-label"></label>
-                <input asp-for="phoneNumber" class="form-control" />
-                <span asp-validation-for="phoneNumber" class="text-danger"></span>
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="@Model.PhoneNumber" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Gender" class="control-label"></label>
@@ -42,12 +47,51 @@
             </div>
         </form>
     </div>
-</div>
+        <div class="col-md-8">
+            <div class="card mb-4 card-hover" style="max-height: 90%; width:92%; border-radius: 5%;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div class="user-image" style="margin-top: 7px; margin-left:7px">
+                            <img src="~/images/@Url.Content(Model.Image)" class="img-fluid rounded-circle border border-dark m-4" alt="User Image" style="border-width: 4px; border-style: solid;width: 150px; height: 150px;" />
+                        </div>
+                    </div>
 
-<br />
-<br />
-<div>
-    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:#848383;margin-bottom: 0px;">
+                                <span style="font-weight:initial;font-size:17px">@CurrentDoctor.Role</span>
+                                <span>@CurrentDoctor.firstName @CurrentDoctor.lastName</span>
+                            </h5>
+                            <p class="card-text" style="color:#848383;margin-bottom: 0px;margin-top: 0px;font-size:15px;font-weight:inherit">@CurrentDoctor.Specialization</p>
+                            <p class="card-text" style="color:#2985D3;margin-bottom: 3px">
+                                &#129658;<span style="color:#898B8E;font-size:15px;font-weight:inherit">Specialized in </span>
+                                <span style="font-weight:700">@CurrentDoctor.typeOfSpecialization</span>
+                            </p>
+                            <p class="card-text" style="color:#898B8E;margin-top: 2px;margin-bottom: 4px">
+                                <i class="bi bi-geo-alt"></i>@CurrentDoctor.Address
+                            </p>
+                            <p class="card-text" style="margin-top: 2px ;margin-bottom: 4px">
+                                &#128184;<span style="color:#898B8E;font-size:15px;font-weight:inherit">Fees:</span>
+                                <span style="color:#898B8E;font-size:15px;font-weight:inherit">@CurrentDoctor.fees EGP</span>
+                            </p>
+                            <p class="card-text" style="margin-top: 2px ;margin-bottom: 4px">
+                                &#128184;<span style="color:#898B8E;font-size:15px;font-weight:inherit">Appointment:</span>
+                                <span style="color:darkred;font-size:15px;font-weight:inherit;font-weight:bold">@ViewBag.Appo</span>
+                            </p>
+                            <p class="card-text" style="margin-top: 2px;margin-bottom: 4px;color:#2985D3;">
+                                <i class="bi bi-hourglass-split"></i>Waiting Time : 37 Minutes
+                            </p>
+                            <p class="card-text" style="margin-top: 2px;margin-bottom: 4px;color:#898B8E;">
+                                <i class="bi bi-telephone"></i>16676 - Cost of regular call
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 </div>
 @section Scripts {

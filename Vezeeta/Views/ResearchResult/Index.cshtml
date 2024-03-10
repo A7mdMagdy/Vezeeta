@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Vezeeta.Models.AppUser>
+@{Layout = "~/Views/Shared/_Layout.cshtml";}
 
 <style>
     .user-rating {
@@ -32,7 +33,7 @@
     }
 
     .carousel-item {
-        text-align: center; 
+        text-align: center;
     }
 
     .list-group-item {
@@ -47,7 +48,34 @@
     a:hover span {
         text-decoration: underline;
     }
-    
+
+    .custom-select {
+        /* Add your custom styles here */
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        background-color: #fff;
+        background-clip: padding-box;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+        .custom-select:focus {
+            /* Add focus styles here */
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 .25rem rgba(0,123,255,.25);
+        }
+
+    .appointment-item {
+        transition: background-color 0.3s ease;
+    }
+
+        .appointment-item:hover {
+            background-color: rgba(240, 240, 240, 0.8); /* Change to your desired hover background color */
+        }
+
 </style>
 
 <div class="row">
@@ -60,61 +88,31 @@
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:#0070CD;text-align:center;font-weight:bold">
                         SubSpecialist&#129658;
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <input type="radio" id="All" name="specialist" value="All">
-                        <label for="All">All</label>
-                        <br />
-                        <input type="radio" id="dermatology" name="specialist" value="Dermatology">
-                        <label for="dermatology">Dermatology</label>
-                        <br/>
-
-                        <input type="radio" id="dentistry" name="specialist" value="Dentistry">
-                        <label for="dentistry">Dentistry</label>
-                        <br />
-
-                        <input type="radio" id="psychiatry" name="specialist" value="Psychiatry">
-                        <label for="psychiatry">Psychiatry</label>
-                        <br />
-                        <input type="radio" id="pediatrics" name="specialist" value="Pediatrics and New Born">
-                        <label for="pediatrics">Pediatrics and New Born</label>
-                        <br />
-                        <input type="radio" id="neurology" name="specialist" value="Neurology">
-                        <label for="neurology">Neurology</label>
-                        <br />
-                        <input type="radio" id="orthopedics" name="specialist" value="Orthopedics">
-                        <label for="orthopedics">Orthopedics</label>
-                        <br />
-                        <input type="radio" id="gynaecology" name="specialist" value="Gynaecology and Infertility">
-                        <label for="gynaecology">Gynaecology and Infertility</label>
-                        <br />
-                        <input type="radio" id="ent" name="specialist" value="Ear, Nose and Throat">
-                        <label for="ent">Ear, Nose and Throat</label>
-                        <br />
-                        <input type="radio" id="allergy" name="specialist" value="Allergy and Immunology">
-                        <label for="allergy">Allergy and Immunology</label>
-                        <br />
-                        <input type="radio" id="audiology" name="specialist" value="Audiology">
-                        <label for="audiology">Audiology</label>
-                        <br />
-                        <input type="radio" id="chestrespiratory" name="specialist" value="Chest and Respiratory">
-                        <label for="chestrespiratory">Chest and Respiratory</label>
-                        <br />
-                        <input type="radio" id="diabetes" name="specialist" value="Diabetes and Endocrinology">
-                        <label for="diabetes">Diabetes and Endocrinology</label>
-                        <br />
-                        <input type="radio" id="radiology" name="specialist" value="Diagnostic Radiology">
-                        <label for="radiology">Diagnostic Radiology</label>
-                        <br />
-                        <input type="radio" id="dietnutrition" name="specialist" value="Dietitian and Nutrition">
-                        <label for="dietnutrition">Dietitian and Nutrition</label>
-                        <br />
-                        <input type="radio" id="familymedicine" name="specialist" value="Family Medicine">
-                        <label for="familymedicine">Family Medicine</label>
+                        <select class="form-select custom-select w-100" aria-label="specialist" style="width:150px; color: #747470;" onchange="location = this.value;">
+                            <option selected style="color: #747470;" hidden>Select specialist</option>
+                            <option value="?filterspecialist=specialist" style="color: #747470;">ALL</option>
+                            <option value="?filterspecialist=Dermatology" style="color: #747470;">Dermatology</option>
+                            <option value="?filterspecialist=Dentistry" style="color: #747470;">Dentistry</option>
+                            <option value="?filterspecialist=Psychiatry" style="color: #747470;">Psychiatry</option>
+                            <option value="?filterspecialist=Pediatrics and New Born" style="color: #747470;">Pediatrics and New Born</option>
+                            <option value="?filterspecialist=Neurology" style="color: #747470;">Neurology</option>
+                            <option value="?filterspecialist=Orthopedics" style="color: #747470;">Orthopedics</option>
+                            <option value="?filterspecialist=Gynaecology" style="color: #747470;">Gynaecology</option>
+                            <option value="?filterspecialist=Ear, Nose and Throat" style="color: #747470;">Ear, Nose and Throat</option>
+                            <option value="?filterspecialist=Allergy and Immunology" style="color: #747470;">Allergy and Immunology</option>
+                            <option value="?filterspecialist=Audiology" style="color: #747470;">Audiology</option>
+                            <option value="?filterspecialist=Chest and Respiratory" style="color: #747470;">Chest and Respiratory</option>
+                            <option value="?filterspecialist=Diabetes and Endocrinology" style="color: #747470;">Diabetes and Endocrinology</option>
+                            <option value="?filterspecialist=Diagnostic Radiology" style="color: #747470;">Diagnostic Radiology</option>
+                            <option value="?filterspecialist=Dietitian and Nutrition" style="color: #747470;">Dietitian and Nutrition</option>
+                            <option value="?filterspecialist=Family Medicine" style="color: #747470;">Family Medicine</option>
+                        </select>
                         <br />
                     </div>
                 </div>
@@ -127,17 +125,14 @@
                 </h3>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <input type="radio" id="Lessthan50" name="Fees" value="Lessthan50">
-                        <label for="Lessthan50">Lessthan50</label>
-                        <br />
-                        <input type="radio" id="From100to200" name="Fees" value="From100to200">
-                        <label for="From100to200">From100to200</label>
-                        <br />
-                        <input type="radio" id="From200to300" name="Fees" value="From200to300">
-                        <label for="From200to300">From200to300</label>
-                        <br />
-                        <input type="radio" id="Greaterthan500" name="Fees" value="Greaterthan500">
-                        <label for="Greaterthan500">Overthan500</label>
+                        <select class="form-select custom-select w-100" aria-label="Fees" style="width:150px; color: #747470;" onchange="location = this.value;">
+                            <option selected style="color: #747470;" hidden>Choose Range</option>
+                            <option value="?filterFees=Fees" style="color: #747470;">ALL</option>
+                            <option value="?filterFees=Lessthan50" style="color: #747470;">Lessthan50</option>
+                            <option value="?filterFees=From100to200" style="color: #747470;">From100to200</option>
+                            <option value="?filterFees=From200to300" style="color: #747470;">From200to300</option>
+                            <option value="?filterFees=Greaterthan500" style="color: #747470;">Greaterthan500</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -149,11 +144,12 @@
                 </h3>
                 <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <input type="radio" id="female" name="gender" value="Female" />
-                        <label for="female">Female</label>
-                        <br />
-                        <input type="radio" id="male" name="gender" value="Male"/>
-                        <label for="male">Male</label>
+                        <select class="form-select custom-select w-100" aria-label="gender" style="width:150px; color: #747470;" onchange="location = this.value;">
+                            <option selected style="color: #747470;" hidden>select Gender</option>
+                            <option value="?filterGender=gender" style="color: #747470;">ALL</option>
+                            <option value="?filterGender=Female" style="color: #747470;">Female</option>
+                            <option value="?filterGender=Male" style="color: #747470;">Male</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -166,28 +162,27 @@
             <div class="col-md-6">
                 <h4 style="color:#747470;margin-bottom: 0px;">@Model.FirstOrDefault()?.typeOfSpecialization</h4>
             </div>
-            <div class="col-md-6">
-                <select class="form-select" aria-label="sorted" style="width:150px; color: #747470;" onchange="location = this.value;">
+            <div class="col-md-5 row justify-content-end">
+                <select class="form-select" aria-label="sorted" style="width:50%; color: #747470;" onchange="location = this.value;">
                     <option value="?sortOrder=Sorted" selected style="color: #747470;">Sorted</option>
                     <option value="?sortOrder=HighToLow" style="color: #747470;">High to Low</option>
                     <option value="?sortOrder=LowToHigh" style="color: #747470;">Low to High</option>
                 </select>
             </div>
         </div>
-        <br/>
+        <br />
         <div class="user-list col-12">
             @foreach (var user in Model)
             {
 
-                <div class="card mb-4 card-hover" style="max-width: 94%; border-radius:5% ;">
-                    
+                <div class="card mb-4 card-hover rounded" style="max-width: 94%; border-radius:5% ;">
+
                     <div class="row g-0">
                         <div class="col-md-2">
                             <a href="@Url.Action("Details", "ResearchResult", new { id = user.Id })" style="text-decoration: none;">
-                            <div class="user-image" style="margin-top: 20px;">
-                                    @* <img src="~/images/@Url.Content(user.Image)" class="img-fluid rounded-circle border border-dark m-4" alt="User Image" style="border-width: 4px; border-style: solid;width: 110px; height: 110px;" /> *@
-                                    <img src="~/assets/img/@Url.Content(user.Image)" class="img-fluid rounded-circle border border-dark m-4" alt="User Image" style="border-width: 4px; border-style: solid;width: 110px; height: 110px;" />
-                            </div>
+                                <div class="user-image" style="margin-top: 20px;">
+                                    <img src="~/images/@Url.Content(user.Image)" class="img-fluid rounded-circle border border-dark m-4" alt="User Image" style="border-width: 4px; border-style: solid;width: 100px; height: 100px;" />
+                                </div>
                             </a>
                         </div>
 
@@ -196,7 +191,7 @@
                                 <a href="@Url.Action("Details", "ResearchResult", new { id = user.Id })" style="text-decoration: none;">
                                     <h5 class="card-title" style="color:#2985D3;margin-bottom: 0px;">
                                         <span style="font-weight:initial;font-size:17px">@user.Role</span>
-                                        <span >@user.firstName @user.lastName</span>
+                                        <span>@user.firstName @user.lastName</span>
                                     </h5>
                                 </a>
                                 <p class="card-text" style="color:#898B8E;margin-bottom: 0px;margin-top: 0px;font-size:15px;font-weight:inherit"> @user.Specialization</p>
@@ -224,52 +219,35 @@
                         <div id="carouselExample" class="carousel slide col-md-5 justify-content-end row" data-bs-interval="false">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <div class="row ">
-                                        <div class="col-5">
-                                            <div class="list-group  " style="width:100%;margin-top:50px;">
-                                                <a href="#" class="list-group-item list-group-item-action active" style="background:#0070CD;text-align:center;font-weight:bold;font-size:15px;" aria-current="true">
-                                                    Today
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px ;padding:0">5:00 PM</a>
-                                                <a href="#" class="list-group-item list-group-item-action" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px ;padding:0">5:00 PM</a>
-                                                <a href="#" class="list-group-item list-group-item-action" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px ;padding:0">5:00 PM</a>
-                                                <a class="list-group-item list-group-item-action disabled" aria-disabled="true" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px ;padding:0">5:00 PM</a>
-                                                <a href="#" class="list-group-item list-group-item-action active" style="background:#EF0F0F;text-align:center;font-weight:bold;font-size:15px;" aria-current="true">
-                                                    BOOk
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
+                                    <div class="row">
+                                        <div class="col-6">
+
                                             <div class="list-group" style="width:100%;margin-top:50px;">
-                                                <a href="#" class="list-group-item list-group-item-action active" style="background:#0070CD;text-align:center;font-weight:bold;font-size:15px;" aria-current="true">
-                                                    Today
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px ;padding:0">5:00 PM</a>
-                                                <a href="#" class="list-group-item list-group-item-action" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px ;padding:0">5:00 PM</a>
-                                                <a href="#" class="list-group-item list-group-item-action" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px ;padding:0">5:00 PM</a>
-                                                <a class="list-group-item list-group-item-action disabled" aria-disabled="true" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px ;padding:0">5:00 PM</a>
-                                                <a href="#" class="list-group-item list-group-item-action active" style="background:#EF0F0F;text-align:center;font-weight:bold;font-size:15px;" aria-current="true">
-                                                    BOOk
-                                                </a>
+                                                <p class="list-group-item list-group-item-action active bg-secondry" style="text-align:center;font-weight:bold;font-size:15px;" aria-current="true">
+                                                    Available Dates
+                                                </p>
+                                                @foreach (var appointment in user.DoctorAppointments)
+                                                {
+                                                    <a asp-controller="pateint" asp-action="Book" class="list-group-item list-group-item-action appointment-item" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px;padding:0" asp-route-Currentdoc="@user.Id" asp-route-Appo="@appointment.Date.ToString("yyyy-M-d") - @appointment.Time PM">
+                                                        @appointment.Date.ToString("yyyy-M-d") - @appointment.Time PM
+                                                    </a>
+                                             
+                                                }
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button class="carousel-control-prev " type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="false"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
                     </div>
                 </div>
             }
         </div>
+
+
     </div>
+
 </div>
 
 

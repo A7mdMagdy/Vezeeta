@@ -23,9 +23,94 @@
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 <link href="assets/css/style.css" rel="stylesheet">
 
+  @*  .search-container {
+        display: flex;
+        align-items: center;
+        width: 300px;
+        margin: 20px auto;
+    }
+
+    input[type="text"] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px;
+        width: 70%;
+    }
+
+    button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        padding: 8px 15px;
+        cursor: pointer;
+        width: 30%;
+    }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }  *@
+<style>
+    /* Custom Select */
+    .custom-select {
+        position: relative;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+        width: 200px;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+        .custom-select select {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .custom-select::after {
+            content: '\25BC'; /* Unicode character for down arrow */
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #666;
+            pointer-events: none;
+        }
+
+        /* Hover and Focus Styles */
+        .custom-select:hover,
+        .custom-select select:focus {
+            border-color: #999;
+        }
+
+        /* Disabled Style */
+        .custom-select select:disabled {
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        /* Option Style */
+        .custom-select select option {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+        }
+
+            /* Option Hover Style */
+            .custom-select select option:hover {
+                background-color: #f2f2f2;
+            }
+</style>
 
 <div style="position:relative;">
-    <section id="hero" style="z-index:-1;">
+    <section id="hero">
         <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
             <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
@@ -33,15 +118,78 @@
             <div class="carousel-inner " role="listbox">
 
                 <!-- Slide 1 -->
-                <div class="carousel-item active " style="background-image: url(assets/img/slide/slide-1.jpg)">
+                <div class="carousel-item active row" style="background-image: url(assets/img/slide/slide-1.jpg)">
+                    <form action="/ResearchResult/Index" method="get" style="margin-bottom:200px; margin-left:1300px">
+                        <select class="form-select-lg w-25 rounded" aria-label="specialist" style="color: #747470;" name="filterspecialist">
+                                <option selected style="color: #747470;" hidden>Select specialist</option>
+                                <option style="color: #747470;">Dermatology</option>
+                                <option style="color: #747470;">Dentistry</option>
+                                <option style="color: #747470;">Psychiatry</option>
+                                <option style="color: #747470;">Pediatrics and New Born</option>
+                                <option style="color: #747470;">Neurology</option>
+                                <option style="color: #747470;">Orthopedics</option>
+                                <option style="color: #747470;">Gynaecology</option>
+                                <option style="color: #747470;">Ear, Nose and Throat</option>
+                                <option style="color: #747470;">Allergy and Immunology</option>
+                                <option style="color: #747470;">Audiology</option>
+                                <option style="color: #747470;">Chest and Respiratory</option>
+                                <option style="color: #747470;">Diabetes and Endocrinology</option>
+                                <option style="color: #747470;">Diagnostic Radiology</option>
+                                <option style="color: #747470;">Dietitian and Nutrition</option>
+                                <option style="color: #747470;">Family Medicine</option>
+                            </select>
+                            <input type="submit" value="Search" class="btn btn-danger" />
+                    </form>
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+                <div class="carousel-item row" style="background-image: url(assets/img/slide/slide-2.jpg)">
+                    <form action="/ResearchResult/Index" method="get" style="margin-bottom:200px; margin-left:1300px">
+                        <select class="form-select-lg w-25 rounded" aria-label="specialist" style="color: #747470;" name="filterspecialist">
+                            <option selected style="color: #747470;" hidden>Select specialist</option>
+                            <option style="color: #747470;">Dermatology</option>
+                            <option style="color: #747470;">Dentistry</option>
+                            <option style="color: #747470;">Psychiatry</option>
+                            <option style="color: #747470;">Pediatrics and New Born</option>
+                            <option style="color: #747470;">Neurology</option>
+                            <option style="color: #747470;">Orthopedics</option>
+                            <option style="color: #747470;">Gynaecology</option>
+                            <option style="color: #747470;">Ear, Nose and Throat</option>
+                            <option style="color: #747470;">Allergy and Immunology</option>
+                            <option style="color: #747470;">Audiology</option>
+                            <option style="color: #747470;">Chest and Respiratory</option>
+                            <option style="color: #747470;">Diabetes and Endocrinology</option>
+                            <option style="color: #747470;">Diagnostic Radiology</option>
+                            <option style="color: #747470;">Dietitian and Nutrition</option>
+                            <option style="color: #747470;">Family Medicine</option>
+                        </select>
+                        <input type="submit" value="Search" class="btn btn-danger" />
+                    </form>
                 </div>
 
                 <!-- Slide 3 -->
-                <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+                <div class="carousel-item row" style="background-image: url(assets/img/slide/slide-3.jpg)">
+                    <form action="/ResearchResult/Index" method="get" style="margin-bottom:200px; margin-left:1300px">
+                        <select class="form-select-lg w-25 rounded" aria-label="specialist" style="color: #747470;" name="filterspecialist">
+                            <option selected style="color: #747470;" hidden>Select specialist</option>
+                            <option style="color: #747470;">Dermatology</option>
+                            <option style="color: #747470;">Dentistry</option>
+                            <option style="color: #747470;">Psychiatry</option>
+                            <option style="color: #747470;">Pediatrics and New Born</option>
+                            <option style="color: #747470;">Neurology</option>
+                            <option style="color: #747470;">Orthopedics</option>
+                            <option style="color: #747470;">Gynaecology</option>
+                            <option style="color: #747470;">Ear, Nose and Throat</option>
+                            <option style="color: #747470;">Allergy and Immunology</option>
+                            <option style="color: #747470;">Audiology</option>
+                            <option style="color: #747470;">Chest and Respiratory</option>
+                            <option style="color: #747470;">Diabetes and Endocrinology</option>
+                            <option style="color: #747470;">Diagnostic Radiology</option>
+                            <option style="color: #747470;">Dietitian and Nutrition</option>
+                            <option style="color: #747470;">Family Medicine</option>
+                        </select>
+                        <input type="submit" value="Search" class="btn btn-danger" />
+                    </form>
                 </div>
 
             </div>

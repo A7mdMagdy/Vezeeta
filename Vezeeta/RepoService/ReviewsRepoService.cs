@@ -20,5 +20,11 @@ namespace Vezeeta.RepoServices
                                  .Where(r => r.DoctorId == Id)
                                  .ToList();
         }
+        public List<Reviews> GetAllReviews()   // doctor id
+        {
+            return Context.Reviews.Include(r => r.Patient)
+                                 .Include(r => r.Doctor)
+                                 .ToList();
+        }
     }
 }

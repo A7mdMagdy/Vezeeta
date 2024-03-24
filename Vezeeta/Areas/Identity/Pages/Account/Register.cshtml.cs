@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
@@ -122,7 +123,7 @@ namespace Vezeeta.Areas.Identity.Pages.Account
                 var user = CreateUser();
                 user.firstName = Input.firstName;
                 user.lastName = Input.lastName;
-                user.birthDate  = Input.birthDate;
+                user.birthDate = Input.birthDate;
                 user.Address = Input.Address;
                 user.Gender = Input.Gender;
                 user.Role = Input.Role;
@@ -135,8 +136,22 @@ namespace Vezeeta.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    if (Input.Role == Role.Admin)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                    }
+                    else if (Input.Role == Role.Patient)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Patient");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "Doctor");
+                    }
 
                     var userId = await _userManager.GetUserIdAsync(user);
+                    var claim = new Claim("Id", userId);
+                    await _userManager.AddClaimAsync(user, claim);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

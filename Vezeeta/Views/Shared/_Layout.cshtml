@@ -30,13 +30,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark hoverLink fs-6" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Doctor"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark hoverLink fs-6" asp-area="" asp-controller="Doctor" asp-action="Details">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark hoverLink fs-6" asp-area="" asp-controller="Reviews" asp-action="Index" asp-route-id="">Doctor Reviews</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark hoverLink fs-6" asp-area="" asp-controller="Appointments" asp-action="Index">Doctors Appointments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark hoverLink fs-6" asp-area="" asp-controller="Appointments" asp-action="Create" asp-route-id="">Create Appointment</a>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Patient"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark hoverLink fs-6" asp-area="" asp-controller="ResearchResult" asp-action="Index">Research Result</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark hoverLink fs-6" asp-area="" asp-controller="Doctor" asp-action="Details">Profile</a>
                             </li>
                         }
                     </ul>

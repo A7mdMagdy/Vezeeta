@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Vezeeta.Migrations
 {
     /// <inheritdoc />
-    public partial class update_Register_AppUser : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -223,6 +225,16 @@ namespace Vezeeta.Migrations
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Role",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "082fe486-d1d2-45cb-92e0-67b3ee1bc230", null, "Patient", "patient" },
+                    { "44788341-435e-47af-b680-afbb31f33839", null, "Admin", "admin" },
+                    { "5dc51e4a-9c01-4c77-89cb-d96d60387782", null, "Doctor", "Doctor" }
                 });
 
             migrationBuilder.CreateIndex(

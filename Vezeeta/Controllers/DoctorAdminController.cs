@@ -13,7 +13,7 @@ using Vezeeta.ViewModels;
 
 namespace Vezeeta.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class DoctorAdminController : Controller
     {
 

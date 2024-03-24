@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Vezeeta.Models;
 using Vezeeta.RepoServices;
 
@@ -8,12 +9,15 @@ namespace Vezeeta.Controllers
     public class AppointmentsController : Controller
     {
         public IAppointmentsRepository AppointmentsRepo { get; }
-        public AppointmentsController(IAppointmentsRepository appointmentRepo)
+        public string? id { get; set; }
+        public AppointmentsController(IAppointmentsRepository appointmentRepo, IHttpContextAccessor httpContextAccessor)
         {
             AppointmentsRepo = appointmentRepo;
+            this.id = httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
         // GET: AppointmentsController
-        public ActionResult Index(string id)
+        // <<<  Replaced  >>> public ActionResult Index(string id)
+        public ActionResult Index()
         {
             ViewBag.id = id;
             var appointments = AppointmentsRepo.GetAllAppointments(id);
@@ -21,8 +25,9 @@ namespace Vezeeta.Controllers
         }
 
         // GET: AppointmentsController/Create
+        // <<<  Replaced  >>> public ActionResult Create(string id)
         [HttpGet]
-        public ActionResult Create(string id)
+        public ActionResult Create()
         {
             ViewBag.id = id;
             return View();
@@ -51,52 +56,5 @@ namespace Vezeeta.Controllers
             //return View();
         }
 
-        // GET: AppointmentsController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: AppointmentsController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AppointmentsController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AppointmentsController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AppointmentsController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

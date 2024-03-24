@@ -23,34 +23,6 @@ namespace Vezeeta.Data
             builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
             builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
             builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
-            //builder.Entity<Appointments>()
-            //.HasOne(a => a.Doctor)
-            //.WithMany(u => u.Appointments)
-            //.HasForeignKey(a => a.DoctorId)
-            //.OnDelete(DeleteBehavior.ClientSetNull);
-            ////.OnDelete(DeleteBehavior.Restrict); // or Cascade if you want appointments to be deleted when a user is deleted
-
-            //builder.Entity<Appointments>()
-            //    .HasOne(a => a.Patient)
-            //    .WithMany(u => u.Appointments)
-            //    .HasForeignKey(a => a.PatientId)
-            //.OnDelete(DeleteBehavior.ClientSetNull);
-            ////.OnDelete(DeleteBehavior.Restrict);
-
-            //builder.Entity<Reviews>()
-            //.HasOne(a => a.Doctor)
-            //.WithMany(u => u.Reviews)
-            //.HasForeignKey(a => a.DoctorId)
-            //.OnDelete(DeleteBehavior.ClientSetNull);
-            ////.OnDelete(DeleteBehavior.Restrict); // or Cascade if you want appointments to be deleted when a user is deleted
-
-            //builder.Entity<Reviews>()
-            //    .HasOne(a => a.Patient)
-            //    .WithMany(u => u.Reviews)
-            //    .HasForeignKey(a => a.PatientId)
-            //    .OnDelete(DeleteBehavior.ClientSetNull);
-            ////.OnDelete(DeleteBehavior.Restrict);
-
 
             builder.Entity<Appointments>()
             .HasOne(a => a.Doctor)
@@ -75,6 +47,27 @@ namespace Vezeeta.Data
                 .WithMany(u => u.PatientReviews)
                 .HasForeignKey(a => a.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // <<<<<<<<<<<  ( Add Roles ) >>>>>>>>>>>>>>
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole()
+                {
+                    Name = "Admin",
+                    NormalizedName = "admin"
+                },
+                new IdentityRole()
+                {
+                    Name = "Patient",
+                    NormalizedName = "patient"
+                },
+                new IdentityRole()
+                {
+                    Name = "Doctor",
+                    NormalizedName = "Doctor"
+                }
+            );
+
+
         }
         public DbSet<Appointments> Appointments { get; set; }
         public DbSet<Reviews> Reviews { get; set; }

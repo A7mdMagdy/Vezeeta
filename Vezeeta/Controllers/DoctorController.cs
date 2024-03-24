@@ -4,16 +4,21 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
 using Vezeeta.Models;
 using Vezeeta.RepoServices;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Vezeeta.Controllers
 {
+    [Authorize(Roles="Doctor")]
     public class DoctorController : Controller
     {
         public IDoctorRepository DoctorRepo { get; }
+        public string? id { get; set; }
         //private readonly IWebHostEnvironment HostingEnvironment;
-        public DoctorController(IDoctorRepository doctorRepo)
+        public DoctorController(IDoctorRepository doctorRepo, IHttpContextAccessor httpContextAccessor)
         {
             DoctorRepo = doctorRepo;
+            this.id = httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             //HostingEnvironment = hostingEnvironment;
         }
         public ActionResult Index()
@@ -22,9 +27,9 @@ namespace Vezeeta.Controllers
         }
 
         // GET: DoctorController/Details/5
-        public ActionResult Details(string id)
+        // <<<  Replaced  >>> public ActionResult Details(string id)
+        public ActionResult Details()
         {
-            id = User.Identity.Name;
             ViewBag.id = id;
             return View(DoctorRepo.GetDoctorDetails(id));
         }
@@ -51,9 +56,9 @@ namespace Vezeeta.Controllers
         }
 
         // GET: DoctorController/Edit/5
-        public ActionResult Edit(string id)
+        // <<<  Replaced  >>> public ActionResult Edit(string id)
+        public ActionResult Edit()
         {
-            id = User.Identity.Name;
             ViewBag.id = id;
             return View(DoctorRepo.GetDoctorDetails(id));
         }
@@ -61,11 +66,11 @@ namespace Vezeeta.Controllers
         // POST: DoctorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id, AppUser doctor, IFormFile imageFile)
+        // <<<  Replaced  >>> public ActionResult Edit(string id, AppUser doctor, IFormFile imageFile)
+        public ActionResult Edit(AppUser doctor, IFormFile imageFile)
         {
             try
             {
-                id = User.Identity.Name;
                 DoctorRepo.UpdateDoctor(id, doctor);
                 return RedirectToAction("Details", new { id = id });
             }

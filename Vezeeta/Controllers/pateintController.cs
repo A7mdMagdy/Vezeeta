@@ -11,7 +11,6 @@ using Vezeeta.ViewModels;
 
 namespace Vezeeta.Controllers
 {
-    [Authorize]
     public class pateintController : Controller
     {
         private readonly SignInManager<AppUser> _signInManager;
@@ -31,6 +30,7 @@ namespace Vezeeta.Controllers
         //}
 
         // <<<<<<<<<  Patient Appointments  >>>>>>>>>>>>>
+        [Authorize(Roles ="Patient")]
         public ActionResult Appointments()
         {
             var patientappointments = Context.Appointments.Include(a=>a.Patient).Include(a=>a.Doctor).ToList();
@@ -48,7 +48,6 @@ namespace Vezeeta.Controllers
         [HttpGet]
         public async Task<ActionResult> Book(string Currentdoc, string Appo)
         {
-
             var doctor = await userManager.FindByIdAsync(Currentdoc);
             ViewBag.currentDoctor = doctor;
             ViewBag.Appo = Appo;

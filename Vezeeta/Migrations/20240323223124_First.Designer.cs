@@ -12,8 +12,8 @@ using Vezeeta.Data;
 namespace Vezeeta.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240303080641_update_Register_AppUser")]
-    partial class update_Register_AppUser
+    [Migration("20240323223124_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,26 @@ namespace Vezeeta.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Role", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "44788341-435e-47af-b680-afbb31f33839",
+                            Name = "Admin",
+                            NormalizedName = "admin"
+                        },
+                        new
+                        {
+                            Id = "082fe486-d1d2-45cb-92e0-67b3ee1bc230",
+                            Name = "Patient",
+                            NormalizedName = "patient"
+                        },
+                        new
+                        {
+                            Id = "5dc51e4a-9c01-4c77-89cb-d96d60387782",
+                            Name = "Doctor",
+                            NormalizedName = "Doctor"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -280,7 +300,6 @@ namespace Vezeeta.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PatientId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Time")
@@ -392,8 +411,7 @@ namespace Vezeeta.Migrations
                     b.HasOne("Vezeeta.Models.AppUser", "Patient")
                         .WithMany("PatientAppointments")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Doctor");
 

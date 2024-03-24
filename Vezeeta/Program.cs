@@ -28,7 +28,7 @@ namespace Vezeeta
             //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
             //&&&&&&&&&&&&&&&&&&&(Identity)&&&&&&&&&&&&&&&&&&&&&&&&&&
             builder.Services.AddIdentity<AppUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                  .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddUserStore<UserStore<AppUser, IdentityRole, ApplicationDbContext>>()

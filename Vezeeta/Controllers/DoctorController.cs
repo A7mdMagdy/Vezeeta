@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
 using Vezeeta.Models;
 using Vezeeta.RepoServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Vezeeta.Controllers
 {

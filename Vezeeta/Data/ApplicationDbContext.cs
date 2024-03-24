@@ -51,7 +51,6 @@ namespace Vezeeta.Data
             //    .OnDelete(DeleteBehavior.ClientSetNull);
             ////.OnDelete(DeleteBehavior.Restrict);
 
-
             builder.Entity<Appointments>()
             .HasOne(a => a.Doctor)
             .WithMany(u => u.DoctorAppointments)
@@ -75,6 +74,27 @@ namespace Vezeeta.Data
                 .WithMany(u => u.PatientReviews)
                 .HasForeignKey(a => a.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // <<<<<<<<<<<  ( Add Roles ) >>>>>>>>>>>>>>
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole()
+                {
+                    Name = "Admin",
+                    NormalizedName = "admin"
+                },
+                new IdentityRole()
+                {
+                    Name = "Patient",
+                    NormalizedName = "patient"
+                },
+                new IdentityRole()
+                {
+                    Name = "Doctor",
+                    NormalizedName = "Doctor"
+                }
+            );
+
+
         }
         public DbSet<Appointments> Appointments { get; set; }
         public DbSet<Reviews> Reviews { get; set; }

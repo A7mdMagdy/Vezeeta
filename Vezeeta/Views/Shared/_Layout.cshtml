@@ -33,18 +33,21 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="pateint" asp-action="Appointments">Appointments</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="DoctorAdmin" asp-action="Index">Doctors</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Appointments" asp-action="Index">Doctors Appointments</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Appointments" asp-action="Create" asp-route-id="0a753a31-8e7d-446d-b17e-130b24f3efa4">Create Appointment</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Reviews" asp-action="Index" asp-route-id="0a753a31-8e7d-446d-b17e-130b24f3efa4">Reviews</a>
-                            </li>
+                            if (User.IsInRole("Doctor"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="DoctorAdmin" asp-action="Index">Doctors</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Reviews" asp-action="Index" asp-route-id="">Doctor Reviews</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Appointments" asp-action="Index">Doctors Appointments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Appointments" asp-action="Create" asp-route-id="0a753a31-8e7d-446d-b17e-130b24f3efa4">Create Appointment</a>
+                                </li>
+                            }
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ResearchResult" asp-action="Index">Research Result</a>
                             </li>

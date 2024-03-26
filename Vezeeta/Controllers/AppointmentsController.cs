@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Vezeeta.Models;
 using Vezeeta.RepoServices;
+using Vezeeta.ViewModels;
 
 namespace Vezeeta.Controllers
 {
@@ -35,8 +36,13 @@ namespace Vezeeta.Controllers
         // POST: AppointmentsController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(Appointments appointment)
+        public ActionResult Create(AppointmentViewModel _appointment)
         {
+            Appointments appointment = new Appointments();
+            appointment.Date = _appointment.Date;
+            appointment.Time = _appointment.Time;
+            appointment.Fees = _appointment.Fees;
+            appointment.DoctorId = _appointment.DoctorId;
             if (ModelState.IsValid)
             {
                 try
@@ -54,6 +60,13 @@ namespace Vezeeta.Controllers
                 return View();
 
             //return View();
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            AppointmentsRepo.DeleteAppointment(id);
+            return RedirectToAction("Index", new { id = this.id });
         }
 
     }

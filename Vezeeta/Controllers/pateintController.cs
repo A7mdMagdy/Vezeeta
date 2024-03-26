@@ -7,6 +7,7 @@ using Stripe.Checkout;
 using System.Security.Claims;
 using Vezeeta.Data;
 using Vezeeta.Models;
+using Vezeeta.RepoServices;
 using Vezeeta.ViewModels;
 
 namespace Vezeeta.Controllers
@@ -15,25 +16,23 @@ namespace Vezeeta.Controllers
     {
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> userManager;
-
         public ApplicationDbContext Context { get; }
-
-        public pateintController(SignInManager<AppUser> signInManager,UserManager<AppUser> userManager, ApplicationDbContext context)
+        public IAppointmentsRepository AppointmentsRepo { get; }
+        public string PatientId { get; set; }
+        public pateintController(IHttpContextAccessor httpContextAccessor, IAppointmentsRepository appointmentRepo, SignInManager<AppUser> signInManager,UserManager<AppUser> userManager, ApplicationDbContext context)
         {
+            AppointmentsRepo = appointmentRepo;
             _signInManager = signInManager;
             this.userManager = userManager;
             Context = context;
+            this.PatientId = httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
-        //public pateintController(ApplicationDbContext context)
-        //{
-        //    Context = context;
-        //}
-
+     
         // <<<<<<<<<  Patient Appointments  >>>>>>>>>>>>>
         [Authorize(Roles ="Patient")]
         public ActionResult Appointments()
         {
-            var patientappointments = Context.Appointments.Include(a=>a.Patient).Include(a=>a.Doctor).ToList();
+            var patientappointments = Context.Appointments.Include(a=>a.Patient).Include(a=>a.Doctor).Where(u=> u.isPaid).ToList();
             return View(patientappointments);
         }
 
@@ -58,12 +57,11 @@ namespace Vezeeta.Controllers
 
         // <<<<<<<<<  Stripe Page  >>>>>>>>>>>>>
         [HttpPost]
-        public async Task<ActionResult> Book(BookInfo bookInfo)
+        public async Task<ActionResult> Book(IFormCollection bookInfo, string DocId)
         {
-
+            var doctor = Context.Users.FirstOrDefault(u=>u.Id == DocId);
             var user = await userManager.GetUserAsync(User);
             var domain = "http://localhost:7024/";
-            //var product = products.Find(p => p.Id == id);
             var sessionListItem = new SessionLineItemOptions
             {
                 PriceData = new SessionLineItemPriceDataOptions
@@ -72,8 +70,8 @@ namespace Vezeeta.Controllers
                     Currency = "USD",
                     ProductData = new SessionLineItemPriceDataProductDataOptions
                     {
-                        Name = bookInfo.Name,
-                        Description = bookInfo.Id+" | "+bookInfo.Name+ " | " + bookInfo.Email+ " | " + bookInfo.Address+ " | " + bookInfo.phoneNumber+ " | " + bookInfo.Gender
+                        Name = bookInfo["firstName"] +" "+ bookInfo["lastName"],
+                        Description = bookInfo["Email"]+ " | " + bookInfo["Address"]+ " | " + bookInfo["PhoneNumber"]
                     }
                 },
                 Quantity = 1,
@@ -87,6 +85,8 @@ namespace Vezeeta.Controllers
                     sessionListItem
                 },
                 Mode = "payment",
+                
+                ClientReferenceId = DocId,
             };
             // creating object of stripe with needed settings (options)
             Session session = new SessionService().Create(option);
@@ -102,7 +102,11 @@ namespace Vezeeta.Controllers
             var Session = new SessionService().Get(TempData["session"].ToString());
             if (Session.PaymentStatus == "paid")
             {
-                var paymentdata = Session.LineItems;
+                var appointment = Context.Appointments.FirstOrDefault(appoint => appoint.DoctorId == Session.ClientReferenceId);
+                appointment.isPaid = true;
+                appointment.Booked = true;
+                appointment.PatientId = this.PatientId;
+                AppointmentsRepo.UpdateAppointment(appointment);
                 ViewBag.data = Session;
                 return View();
             }

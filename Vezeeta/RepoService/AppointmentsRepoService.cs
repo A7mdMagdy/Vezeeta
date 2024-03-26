@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using Vezeeta.Data;
 using Vezeeta.Models;
 
@@ -8,9 +10,10 @@ namespace Vezeeta.RepoServices
     {
         public string Id { get; set; }
         public ApplicationDbContext Context { get; set; }
-        public AppointmentsRepoService(ApplicationDbContext context)
+        public AppointmentsRepoService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             Context = context;
+            this.Id = httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
 
         public List<Appointments> GetAllAppointments(string id) // doctor id filter
@@ -19,14 +22,13 @@ namespace Vezeeta.RepoServices
             //                     .Include(r => r.Doctor)
             //                     .Where(r => r.DoctorId == id)
             //                     .ToList();
-
-            var Appoints = Context.Appointments.Include(a=>a.Patient).Include(a => a.Doctor).Where(a => a.DoctorId == "0a753a31-8e7d-446d-b17e-130b24f3efa4").ToList();
+            var Appoints = Context.Appointments.Include(a=>a.Patient).Include(a => a.Doctor).Where(a => a.DoctorId == this.Id).ToList();
             return Appoints;
         }
 
         public List<Appointments> GetAllAppointments()
         {
-           
+
             var Appoints = Context.Appointments.Include(a => a.Patient).Include(a => a.Doctor).ToList();
             return Appoints;
         }
@@ -45,13 +47,22 @@ namespace Vezeeta.RepoServices
             }
         }
 
-        public void UpdateAppointment(int id, Appointments appointment)
+        public void UpdateAppointment(Appointments appointment)
         {
-            throw new NotImplementedException();
+            if (appointment!=null)
+            {
+                Context.Appointments.Update(appointment);
+                Context.SaveChanges();
+            }
         }
         public void DeleteAppointment(int id)
         {
-            throw new NotImplementedException();
-        }
-    }
+			var Appoint = Context.Appointments.FirstOrDefault(a=>a.Id == id);
+            if(Appoint != null)
+            {
+                Context.Appointments.Remove(Appoint);
+                Context.SaveChanges();
+            } 
+		}
+	}
 }

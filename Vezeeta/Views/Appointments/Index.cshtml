@@ -51,6 +51,7 @@
                             <th>Date</th>
                             <th>Time</th>
                             <th>Fees</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +61,9 @@
                                 <td>@appointment.Date.ToShortDateString()</td>
                                 <td>@appointment.Time</td>
                                 <td>@appointment.Fees</td>
+                                <td>
+                                    <a asp-controller="Appointments" asp-action="Delete" asp-route-id="@appointment.Id" class="btn btn-danger">Delete</a>
+                                </td>
                             </tr>
                         }
                     </tbody>

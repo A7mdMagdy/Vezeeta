@@ -9,7 +9,7 @@ namespace Vezeeta.RepoServices
         public List<Appointments> GetAllAppointments();
         public Appointments GetAppointmentDetails(int id);
         public void InsertAppointment(Appointments appointment);
-        public void UpdateAppointment(int id, Appointments appointment);
+        public void UpdateAppointment(Appointments appointment);
         public void DeleteAppointment(int id);
     }
 }

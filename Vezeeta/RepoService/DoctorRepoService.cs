@@ -51,10 +51,10 @@ namespace Vezeeta.RepoServices
             AppUser UpdateDoc = Context.Users.FirstOrDefault(d=>d.Id == id);
 			if (UpdateDoc != null)
 			{
-                UpdateDoc.UserName = std.UserName;
+                //UpdateDoc.UserName = std.UserName;
                 UpdateDoc.firstName = std.firstName;
                 UpdateDoc.lastName = std.lastName;
-                UpdateDoc.Email = std.Email;
+                //UpdateDoc.Email = std.Email;
                 UpdateDoc.Address = std.Address;
                 UpdateDoc.fees = std.fees;
                 UpdateDoc.birthDate = std.birthDate;

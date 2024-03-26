@@ -1,74 +1,69 @@
 ﻿@model IEnumerable<Vezeeta.Models.Appointments>
 
 @{
-    ViewData["Title"] = "Appointments";
+	ViewData["Title"] = "Appointments";
 }
 <div class="container">
-<h1>Appointments</h1>
+	<h1>Appointments</h1>
 
-<p>
-    @* <a asp-action="Create">Create New</a> *@
-</p>
-<table class="table table-striped fs-4 text-white text-center">
-    <thead class="bg-dark">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Time)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booked)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.isPaid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fees)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Doctor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient)
-            </th>
-            @* <th></th> *@
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-            <tr>
-                <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Time)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Booked)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.isPaid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fees)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Doctor.firstName)
-                    @Html.DisplayFor(modelItem => item.Doctor.lastName)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Patient.firstName)
-                    @Html.DisplayFor(modelItem => item.Patient.Id)
-            </td>
-@*             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td> *@
-        </tr>
-}
-    </tbody>
-</table>
+	<p>
+		@* <a asp-action="Create">Create New</a> *@
+	</p>
+	<table class="table table-striped text-white text-center">
+		<thead class="bg-dark fs-4">
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Date)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Time)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Booked)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.isPaid)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Fees)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Doctor)
+				</th>
+				@* <th>
+				@Html.DisplayNameFor(model => model.Patient)
+				</th> *@
+			</tr>
+		</thead>
+		<tbody class="fs-6">
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Date)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Time)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Booked)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.isPaid)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Fees) EGP
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Doctor.firstName)
+						@Html.DisplayFor(modelItem => item.Doctor.lastName)
+					</td>
+					@* <td>
+				@Html.DisplayFor(modelItem => item.Patient.firstName)
+				@Html.DisplayFor(modelItem => item.Patient.Id)
+				</td> *@
+				</tr>
+			}
+		</tbody>
+	</table>
 </div>

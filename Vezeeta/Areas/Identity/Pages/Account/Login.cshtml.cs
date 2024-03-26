@@ -119,6 +119,10 @@ namespace Vezeeta.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    if (User.IsInRole("Admin"))
+                    {
+                        return LocalRedirect(Url.Content("~/DoctorAdmin"));
+					}
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

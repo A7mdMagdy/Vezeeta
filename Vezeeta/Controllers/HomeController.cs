@@ -16,7 +16,7 @@ namespace Vezeeta.Controllers
             _logger = logger;
             Context = _context;
         }
-        [Authorize(Roles ="Doctor,Patient")]
+        //[Authorize(Roles ="Doctor,Patient")]
         public IActionResult Index()
         {
             var users = Context.Users.ToList();

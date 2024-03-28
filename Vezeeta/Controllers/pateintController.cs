@@ -35,9 +35,20 @@ namespace Vezeeta.Controllers
             var patientappointments = Context.Appointments.Include(a=>a.Patient).Include(a=>a.Doctor).Where(u=> u.isPaid).ToList();
             return View(patientappointments);
         }
+        // <<<<<<<<<  Cancel Appointment  >>>>>>>>>>>>>
+        [HttpGet]
+        public ActionResult CancelAppointment(int id)   // Appointment Id
+        {
+            var appoint = Context.Appointments.Find(id);
+            appoint.PatientId = null;
+            appoint.isPaid = false;
+            appoint.Booked = false;
+            Context.SaveChanges();
+            return RedirectToAction("Appointments");
+        }
+        // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         public string Currentdoc { get; set; }
-
         public void OnGet(string Currentdoc)
         {
             this.Currentdoc = Currentdoc;
@@ -45,11 +56,12 @@ namespace Vezeeta.Controllers
 
         // <<<<<<<<<  Book Page  >>>>>>>>>>>>>
         [HttpGet]
-        public async Task<ActionResult> Book(string Currentdoc, string Appo)
+        public async Task<ActionResult> Book(string Currentdoc, string Appo, int AppID)
         {
             var doctor = await userManager.FindByIdAsync(Currentdoc);
             ViewBag.currentDoctor = doctor;
             ViewBag.Appo = Appo;
+            ViewBag.AppID = AppID;
             var patient = await userManager.FindByEmailAsync(User.Identity.Name);
             return View(patient);
         }
@@ -57,7 +69,7 @@ namespace Vezeeta.Controllers
 
         // <<<<<<<<<  Stripe Page  >>>>>>>>>>>>>
         [HttpPost]
-        public async Task<ActionResult> Book(IFormCollection bookInfo, string DocId)
+        public async Task<ActionResult> Book(IFormCollection bookInfo, string DocId, int AppointID)
         {
             var doctor = Context.Users.FirstOrDefault(u=>u.Id == DocId);
             var user = await userManager.GetUserAsync(User);
@@ -86,7 +98,7 @@ namespace Vezeeta.Controllers
                 },
                 Mode = "payment",
                 
-                ClientReferenceId = DocId,
+                ClientReferenceId = AppointID.ToString(),
             };
             // creating object of stripe with needed settings (options)
             Session session = new SessionService().Create(option);
@@ -99,18 +111,26 @@ namespace Vezeeta.Controllers
         //[HttpPost]
         public ActionResult Success()
         {
-            var Session = new SessionService().Get(TempData["session"].ToString());
-            if (Session.PaymentStatus == "paid")
+            if(TempData["session"] != null)
             {
-                var appointment = Context.Appointments.FirstOrDefault(appoint => appoint.DoctorId == Session.ClientReferenceId);
-                appointment.isPaid = true;
-                appointment.Booked = true;
-                appointment.PatientId = this.PatientId;
-                AppointmentsRepo.UpdateAppointment(appointment);
-                ViewBag.data = Session;
-                return View();
+                var Session = new SessionService().Get(TempData["session"].ToString());
+                if (Session.PaymentStatus == "paid")
+                {
+                    var appointment = Context.Appointments.Find(int.Parse(Session.ClientReferenceId));
+                    appointment.isPaid = true;
+                    appointment.Booked = true;
+                    appointment.PatientId = this.PatientId;
+                    AppointmentsRepo.UpdateAppointment(appointment);
+                    ViewBag.data = Session;
+                }
+                else
+                {
+                    return View("Failed");
+                }
             }
-            return View("Failed");
+			
+            return View();
+
         }
         //[HttpGet]
         // <<<<<<<<<  Failed Page  >>>>>>>>>>>>>

@@ -4,7 +4,7 @@
 	ViewData["Title"] = "Appointments";
 }
 <div class="container">
-	<h1>Appointments</h1>
+	<h1 class="text-danger">Appointments</h1>
 
 	<p>
 		@* <a asp-action="Create">Create New</a> *@
@@ -18,39 +18,43 @@
 				<th>
 					@Html.DisplayNameFor(model => model.Time)
 				</th>
-				<th>
+				@* <th>
 					@Html.DisplayNameFor(model => model.Booked)
 				</th>
 				<th>
 					@Html.DisplayNameFor(model => model.isPaid)
-				</th>
+				</th> *@
 				<th>
 					@Html.DisplayNameFor(model => model.Fees)
 				</th>
 				<th>
 					@Html.DisplayNameFor(model => model.Doctor)
 				</th>
-				@* <th>
-				@Html.DisplayNameFor(model => model.Patient)
-				</th> *@
+				<th>
+					Action
+				</th>
 			</tr>
 		</thead>
 		<tbody class="fs-6">
 			@foreach (var item in Model)
 			{
-				<tr>
+				var date = DateTime.Now;
+				var RemainingTime = string.Format("{0:0}",item.Date.Subtract(DateTime.Now).TotalHours);
+
+				<tr class="text-black">
 					<td>
-						@Html.DisplayFor(modelItem => item.Date)
+						@* @Html.DisplayFor(modelItem => item.Date.ToShortDateString()) *@
+						@item.Date.ToShortDateString()
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.Time)
 					</td>
-					<td>
+					@* <td>
 						@Html.DisplayFor(modelItem => item.Booked)
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.isPaid)
-					</td>
+					</td> *@
 					<td>
 						@Html.DisplayFor(modelItem => item.Fees) EGP
 					</td>
@@ -58,10 +62,16 @@
 						@Html.DisplayFor(modelItem => item.Doctor.firstName)
 						@Html.DisplayFor(modelItem => item.Doctor.lastName)
 					</td>
-					@* <td>
-				@Html.DisplayFor(modelItem => item.Patient.firstName)
-				@Html.DisplayFor(modelItem => item.Patient.Id)
-				</td> *@
+					<td>
+						@if (int.Parse(RemainingTime) > 0)
+						{
+							<a asp-controller="pateint" asp-action="CancelAppointment" asp-route-id="@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this appointment?')">Cancel</a>
+						}
+						else
+						{
+							<input type="button" class="btn btn-danger" value="Cancel" disabled>
+						}
+						</td> 
 				</tr>
 			}
 		</tbody>

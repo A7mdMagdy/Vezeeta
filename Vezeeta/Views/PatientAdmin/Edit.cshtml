@@ -2,7 +2,6 @@
 
 @{
 	ViewData["Title"] = "Create";
-	Model.Role = Role.Doctor;
 
 }
 
@@ -68,8 +67,8 @@
 	}
 
 		/* table.table tr th:first-child {
-						width: 60px;
-					} */
+							width: 60px;
+						} */
 
 		table.table tr th:last-child {
 			width: 150px;
@@ -281,7 +280,7 @@
 			<div class="modal-content" style="width:200%; margin-left:-250px;">
 				<form asp-action="Create" method="post">
 					<div class="modal-header bg-dark text-white">
-						<h4 class="modal-title">Update Doctor</h4>
+						<h4 class="modal-title">Update Patient</h4>
 					</div>
 					<div asp-validation-summary="All" class="text-danger"></div>
 					<div class="modal-body" style="display:flex;justify-content:space-around;">
@@ -297,19 +296,14 @@
 								<span asp-validation-for="lastName" class="text-danger"></span>
 							</div>
 							<div class="form-group">
+								<label asp-for="Email" class="control-label"></label>
+								<input asp-for="Email" class="form-control" />
+								<span asp-validation-for="Email" class="text-danger"></span>
+							</div>
+							<div class="form-group">
 								<label asp-for="Address" class="control-label"></label>
 								<input asp-for="Address" class="form-control" />
 								<span asp-validation-for="Address" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="Specialization" class="control-label"></label>
-								<input asp-for="Specialization" class="form-control" />
-								<span asp-validation-for="Specialization" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="typeOfSpecialization" class="control-label"></label>
-								<input asp-for="typeOfSpecialization" class="form-control" />
-								<span asp-validation-for="typeOfSpecialization" class="text-danger"></span>
 							</div>
 						</div>
 						<div class="right w-25">
@@ -329,13 +323,8 @@
 								<span asp-validation-for="Role" class="text-danger"></span>
 							</div>
 							<div class="form-group">
-								<label asp-for="fees" class="control-label"></label>
-								<input asp-for="fees" class="form-control" />
-								<span asp-validation-for="fees" class="text-danger"></span>
-							</div>
-							<div class="form-group">
 								<label asp-for="Image" class="control-label"></label>
-								<input asp-for="Image" class="form-control" type="file" />
+								<input asp-for="Image" class="form-control" />
 								<span asp-validation-for="Image" class="text-danger"></span>
 							</div>
 						</div>

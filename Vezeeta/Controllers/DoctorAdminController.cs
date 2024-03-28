@@ -49,7 +49,6 @@ namespace Vezeeta.Controllers
         // GET: DoctorViewModels/Create
         public IActionResult Create()
         {
-
             return View();
         }
 
@@ -68,7 +67,7 @@ namespace Vezeeta.Controllers
             user.birthDate = doctorViewModel.birthDate;
             user.Image = doctorViewModel.Image;
             user.fees = doctorViewModel.fees;
-            user.Role = doctorViewModel.Role;
+            user.Role = Role.Doctor;
             user.Specialization = doctorViewModel.Specialization;
             user.typeOfSpecialization = doctorViewModel.typeOfSpecialization;
             if (ModelState.IsValid)
@@ -111,7 +110,7 @@ namespace Vezeeta.Controllers
                 user.birthDate = doctorViewModel.birthDate;
                 user.Image = doctorViewModel.Image;
                 user.fees = doctorViewModel.fees;
-                user.Role = doctorViewModel.Role;
+                user.Role = Role.Doctor;
                 user.Specialization = doctorViewModel.Specialization;
                 user.typeOfSpecialization = doctorViewModel.typeOfSpecialization;
                 DoctorRepo.UpdateDoctor(id,user);

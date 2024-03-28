@@ -8,7 +8,7 @@
 
     .star {
         cursor: pointer;
-    }
+    } 
 
         .star:hover:before,
         .star:hover ~ .star:before,
@@ -77,7 +77,7 @@
         }
 
 </style>
-
+<div class="container">
 <div class="row">
     <div class="col-md-3">
         <div class="accordion">
@@ -223,12 +223,21 @@
                                         <div class="col-6">
 
                                             <div class="list-group" style="width:100%;margin-top:50px;">
-                                                <p class="list-group-item list-group-item-action active bg-secondry" style="text-align:center;font-weight:bold;font-size:15px;" aria-current="true">
-                                                    Available Dates
-                                                </p>
-                                                @foreach (var appointment in user.DoctorAppointments)
+                                                    @if(user.DoctorAppointments.Count > 0)
+                                                    {
+                                                        <p class="list-group-item list-group-item-action active" style="text-align:center;font-weight:bold;font-size:15px;border:0px;" aria-current="true">
+                                                            Available Dates
+                                                        </p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="list-group-item list-group-item-action active" style="text-align:center;font-weight:bold;font-size:15px;background-color:red;border:0px;" aria-current="true">
+                                                            No Available Dates
+                                                        </p>
+                                                    }
+                                                    @foreach (var appointment in user.DoctorAppointments.Where(da=>!da.Booked))
                                                 {
-                                                    <a asp-controller="pateint" asp-action="Book" class="list-group-item list-group-item-action appointment-item" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px;padding:0" asp-route-Currentdoc="@user.Id" asp-route-Appo="@appointment.Date.ToString("yyyy-M-d") - @appointment.Time PM">
+                                                    <a asp-controller="pateint" asp-action="Book" class="list-group-item list-group-item-action appointment-item py-1" style="color:#0070CD;text-align:center;font-weight:bold;font-size:12px;border-bottom:none;margin-bottom:0px;margin-top:0px;padding:0" asp-route-Currentdoc="@user.Id" asp-route-AppID="@appointment.Id" asp-route-Appo="@appointment.Date.ToString("yyyy-M-d") - @appointment.Time PM">
                                                         @appointment.Date.ToString("yyyy-M-d") - @appointment.Time PM
                                                     </a>
                                              
@@ -247,7 +256,6 @@
 
 
     </div>
-
 </div>
-
+</div>
 

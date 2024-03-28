@@ -71,5 +71,5 @@ namespace Vezeeta.Data
         }
         public DbSet<Appointments> Appointments { get; set; }
         public DbSet<Reviews> Reviews { get; set; }
-    }
+	}
 }

@@ -3,9 +3,13 @@
     ViewData["Title"] = "Success";
 }
 <div class="container">
-<h1 class="text-center text-success">Success</h1>
-<p> @ViewBag.data.Created</p>
-<p> @ViewBag.data.CustomerDetails.Email</p>
-
-<a asp-controller="Home" asp-action="Index">Back To Home</a>
+    <h1 class="text-center text-white bg-success w-50 rounded p-3 m-auto">Payment was successful</h1>
+<p></p>
+    <div class="m-auto" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title text-center w-100 bg-warning rounded p-1">Payment Information</h5>
+            <p class="card-text fw-bold">Email: <span class="text-danger">@ViewBag.data?.CustomerDetails.Email</span></p>
+            <p class="card-text fw-bold">Date: <span class="text-danger">@ViewBag.data?.Created</span></p>
+        </div>
+    </div>
 </div>

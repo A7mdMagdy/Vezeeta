@@ -12,6 +12,7 @@
         <form asp-action="Book" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
                 <input name="DocId" type="password" value="@CurrentDoctor.Id" hidden />
+                <input name="AppointID" type="number" value="@ViewBag.AppID" hidden />
             <div class="form-group">
                 <label asp-for="firstName" class="control-label"></label>
                     <input asp-for="firstName" class="form-control" placeholder="@Model.firstName" />

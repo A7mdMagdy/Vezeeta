@@ -1,10 +1,8 @@
-﻿
-@model Vezeeta.ViewModels.DoctorViewModel
+﻿@model Vezeeta.Models.AppUser
 
 @{
-    ViewData["Title"] = "Create";
-
-	}
+	ViewData["Title"] = "Create";
+}
 
 <style>
 	.table-responsive {
@@ -68,8 +66,8 @@
 	}
 
 		/* table.table tr th:first-child {
-				width: 60px;
-			} */
+					width: 60px;
+				} */
 
 		table.table tr th:last-child {
 			width: 150px;
@@ -228,186 +226,130 @@
 			box-shadow: none;
 			background: #ddd;
 		}
-    .modal .modal-dialog {
-        max-width: 400px;
-    }
 
-    .modal .modal-header, .modal .modal-body, .modal .modal-footer {
-        padding: 20px 30px;
-    }
+	.modal .modal-dialog {
+		max-width: 400px;
+	}
 
-    .modal .modal-content {
-        border-radius: 3px;
-        font-size: 14px;
-    }
+	.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+		padding: 20px 30px;
+	}
 
-    .modal .modal-footer {
-        background: #ecf0f1;
-        border-radius: 0 0 3px 3px;
-    }
+	.modal .modal-content {
+		border-radius: 3px;
+		font-size: 14px;
+	}
 
-    .modal .modal-title {
-        display: inline-block;
-    }
+	.modal .modal-footer {
+		background: #ecf0f1;
+		border-radius: 0 0 3px 3px;
+	}
 
-    .modal .form-control {
-        border-radius: 2px;
-        box-shadow: none;
-        border-color: #dddddd;
-    }
+	.modal .modal-title {
+		display: inline-block;
+	}
 
-    .modal textarea.form-control {
-        resize: vertical;
-    }
+	.modal .form-control {
+		border-radius: 2px;
+		box-shadow: none;
+		border-color: #dddddd;
+	}
 
-    .modal .btn {
-        border-radius: 2px;
-        min-width: 100px;
-    }
+	.modal textarea.form-control {
+		resize: vertical;
+	}
 
-    .modal form label {
-        font-weight: normal;
-    }
+	.modal .btn {
+		border-radius: 2px;
+		min-width: 100px;
+	}
+
+	.modal form label {
+		font-weight: normal;
+	}
+
+	.form-group input,select{
+		margin: 5px 0px;
+	}
+
 </style>
 <div class="container">
-<h1>Create</h1>
-
-<h4>DoctorViewModel</h4>
-<div id="addEmployeeModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form asp-action="Create" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Doctor</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label asp-for="firstName" class="control-label"></label>
-                        <input asp-for="firstName" class="form-control" />
-                        <span asp-validation-for="firstName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="lastName" class="control-label"></label>
-                        <input asp-for="lastName" class="form-control" />
-                        <span asp-validation-for="lastName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="birthDate" class="control-label"></label>
-                        <input asp-for="birthDate" class="form-control" />
-                        <span asp-validation-for="birthDate" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Address" class="control-label"></label>
-                        <input asp-for="Address" class="form-control" />
-                        <span asp-validation-for="Address" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Role" class="control-label"></label>
-                        <select asp-for="Role" asp-items="@Html.GetEnumSelectList<Role>()" class="form-control"></select>
-                        <span asp-validation-for="Role" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Gender" class="control-label"></label>
-                        <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control"></select>
-                        <span asp-validation-for="Gender" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Specialization" class="control-label"></label>
-                        <input asp-for="Specialization" class="form-control" />
-                        <span asp-validation-for="Specialization" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="typeOfSpecialization" class="control-label"></label>
-                        <input asp-for="typeOfSpecialization" class="form-control" />
-                        <span asp-validation-for="typeOfSpecialization" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="fees" class="control-label"></label>
-                        <input asp-for="fees" class="form-control" />
-                        <span asp-validation-for="fees" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Image" class="control-label"></label>
-                        <input asp-for="Image" class="form-control" />
-                        <span asp-validation-for="Image" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-success" value="Add">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<hr />
-@* <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="firstName" class="control-label"></label>
-                <input asp-for="firstName" class="form-control" />
-                <span asp-validation-for="firstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="lastName" class="control-label"></label>
-                <input asp-for="lastName" class="form-control" />
-                <span asp-validation-for="lastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="birthDate" class="control-label"></label>
-                <input asp-for="birthDate" class="form-control" />
-                <span asp-validation-for="birthDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <select asp-for="Role" asp-items="@Html.GetEnumSelectList<Role>()" class="form-control"></select>
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control"></select>
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Specialization" class="control-label"></label>
-                <input asp-for="Specialization" class="form-control" />
-                <span asp-validation-for="Specialization" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="typeOfSpecialization" class="control-label"></label>
-                <input asp-for="typeOfSpecialization" class="form-control" />
-                <span asp-validation-for="typeOfSpecialization" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="fees" class="control-label"></label>
-                <input asp-for="fees" class="form-control" />
-                <span asp-validation-for="fees" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div> *@
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+	<div id="addEmployeeModal">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width:200%; margin-left:-250px;">
+				<form asp-action="Create" method="post">
+					<div class="modal-header bg-dark text-white">
+						<h4 class="modal-title">Create Doctor</h4>
+					</div>
+					<div asp-validation-summary="All" class="text-danger"></div>
+					<div class="modal-body" style="display:flex;justify-content:space-around;">
+						<div class="left w-50">
+							<div class="form-group">
+								<label asp-for="firstName" class="control-label"></label>
+								<input asp-for="firstName" class="form-control" />
+								<span asp-validation-for="firstName" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="lastName" class="control-label"></label>
+								<input asp-for="lastName" class="form-control" />
+								<span asp-validation-for="lastName" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="Address" class="control-label"></label>
+								<input asp-for="Address" class="form-control" />
+								<span asp-validation-for="Address" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="Specialization" class="control-label"></label>
+								<input asp-for="Specialization" class="form-control" />
+								<span asp-validation-for="Specialization" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="typeOfSpecialization" class="control-label"></label>
+								<input asp-for="typeOfSpecialization" class="form-control" />
+								<span asp-validation-for="typeOfSpecialization" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="right w-25">
+							<div class="form-group">
+								<label asp-for="birthDate" class="control-label"></label>
+								<input asp-for="birthDate" class="form-control" />
+								<span asp-validation-for="birthDate" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="Gender" class="control-label"></label>
+								<select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control"></select>
+								<span asp-validation-for="Gender" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="Role" class="control-label"></label>
+								<select asp-for="Role" asp-items="@Html.GetEnumSelectList<Role>()" class="form-control"></select>
+								<span asp-validation-for="Role" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="fees" class="control-label"></label>
+								<input asp-for="fees" class="form-control" />
+								<span asp-validation-for="fees" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label asp-for="Image" class="control-label"></label>
+								<input asp-for="Image" class="form-control" type="file"/>
+								<span asp-validation-for="Image" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a asp-action="Index" class="btn btn-dark">Back to List</a>
+						<input type="submit" class="btn btn-success" value="Create">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<hr />
 </div>
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

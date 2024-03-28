@@ -1,12 +1,16 @@
-﻿@model Vezeeta.Models.AppUser
+﻿@model IEnumerable<Vezeeta.Models.AppUser>
 
 @{
-	ViewData["Title"] = "Create";
-	Model.Role = Role.Doctor;
-
+	ViewData["Title"] = "Index";
 }
-
 <style>
+	/* body {
+			color: #566787;
+			background: #f5f5f5;
+			font-family: 'Varela Round', sans-serif;
+			font-size: 13px;
+		} */
+
 	.table-responsive {
 		margin: 30px 0;
 	}
@@ -68,8 +72,8 @@
 	}
 
 		/* table.table tr th:first-child {
-						width: 60px;
-					} */
+				width: 60px;
+			} */
 
 		table.table tr th:last-child {
 			width: 150px;
@@ -228,7 +232,7 @@
 			box-shadow: none;
 			background: #ddd;
 		}
-
+	/* Modal styles */
 	.modal .modal-dialog {
 		max-width: 400px;
 	}
@@ -269,89 +273,59 @@
 	.modal form label {
 		font-weight: normal;
 	}
-
-	.form-group input, select {
-		margin: 5px 0px;
-	}
-
 </style>
 <div class="container">
-	<div id="addEmployeeModal">
-		<div class="modal-dialog">
-			<div class="modal-content" style="width:200%; margin-left:-250px;">
-				<form asp-action="Create" method="post">
-					<div class="modal-header bg-dark text-white">
-						<h4 class="modal-title">Update Doctor</h4>
-					</div>
-					<div asp-validation-summary="All" class="text-danger"></div>
-					<div class="modal-body" style="display:flex;justify-content:space-around;">
-						<div class="left w-50">
-							<div class="form-group">
-								<label asp-for="firstName" class="control-label"></label>
-								<input asp-for="firstName" class="form-control" />
-								<span asp-validation-for="firstName" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="lastName" class="control-label"></label>
-								<input asp-for="lastName" class="form-control" />
-								<span asp-validation-for="lastName" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="Address" class="control-label"></label>
-								<input asp-for="Address" class="form-control" />
-								<span asp-validation-for="Address" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="Specialization" class="control-label"></label>
-								<input asp-for="Specialization" class="form-control" />
-								<span asp-validation-for="Specialization" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="typeOfSpecialization" class="control-label"></label>
-								<input asp-for="typeOfSpecialization" class="form-control" />
-								<span asp-validation-for="typeOfSpecialization" class="text-danger"></span>
-							</div>
+	<div class="container-xl">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-6">
+							<h2>Manage <b>Patients</b></h2>
 						</div>
-						<div class="right w-25">
-							<div class="form-group">
-								<label asp-for="birthDate" class="control-label"></label>
-								<input asp-for="birthDate" class="form-control" />
-								<span asp-validation-for="birthDate" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="Gender" class="control-label"></label>
-								<select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control"></select>
-								<span asp-validation-for="Gender" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="Role" class="control-label"></label>
-								<select asp-for="Role" asp-items="@Html.GetEnumSelectList<Role>()" class="form-control"></select>
-								<span asp-validation-for="Role" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="fees" class="control-label"></label>
-								<input asp-for="fees" class="form-control" />
-								<span asp-validation-for="fees" class="text-danger"></span>
-							</div>
-							<div class="form-group">
-								<label asp-for="Image" class="control-label"></label>
-								<input asp-for="Image" class="form-control" type="file" />
-								<span asp-validation-for="Image" class="text-danger"></span>
-							</div>
+						<div class="col-sm-6">
+							<a asp-action="Create" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Patient</span></a>
+							@* <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a> *@
 						</div>
 					</div>
-					<div class="modal-footer">
-						<a asp-action="Index" class="btn btn-dark">Back to List</a>
-						<input type="submit" class="btn btn-success" value="Update">
-					</div>
-				</form>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>
+									@Html.DisplayFor(modelItem => item.firstName)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.lastName)
+								</td>
+
+								<td>
+									@Html.DisplayFor(modelItem => item.Email)
+								</td>
+								<td>
+									<a asp-action="Edit" asp-route-id="@item.Id" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+									<a asp-action="Details" asp-route-id="@item.Id" class="detail" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Details">info</i></a>
+									<a asp-action="Delete" asp-route-id="@item.Id" class="delete" data-toggle="modal"><i class="bi bi-trash3-fill"></i></a>
+								</td>
+
+							</tr>
+						}
+
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
-	<hr />
 </div>
-@section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
-}

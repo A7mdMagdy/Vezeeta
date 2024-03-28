@@ -1,6 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
-    //Layout = null;
+	ViewData["Title"] = "Home Page";
+	//Layout = null;
 }
 
 
@@ -11,9 +11,9 @@
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/Vezeeta.styles.css" asp-append-version="true" />
 <!-- Vendor CSS Files -->
- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
- <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
 <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 <link href="assets/css/style.css" rel="stylesheet">
 
-  @*  .search-container {
+@*  .search-container {
         display: flex;
         align-items: center;
         width: 300px;
@@ -51,520 +51,623 @@
             background-color: #0056b3;
         }  *@
 <style>
-    /* Custom Select */
-    .custom-select {
-        position: relative;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        color: #333;
-        width: 200px;
-        height: 40px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        overflow: hidden;
-    }
+	/* Custom Select */
+	.custom-select {
+		position: relative;
+		font-family: Arial, sans-serif;
+		font-size: 16px;
+		color: #333;
+		width: 200px;
+		height: 40px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		overflow: hidden;
+	}
 
-        .custom-select select {
-            width: 100%;
-            height: 100%;
-            padding: 10px;
-            border: none;
-            background-color: transparent;
-            appearance: none;
-            -webkit-appearance: none;
-        }
+		.custom-select select {
+			width: 100%;
+			height: 100%;
+			padding: 10px;
+			border: none;
+			background-color: transparent;
+			appearance: none;
+			-webkit-appearance: none;
+		}
 
-        .custom-select::after {
-            content: '\25BC'; /* Unicode character for down arrow */
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            color: #666;
-            pointer-events: none;
-        }
+		.custom-select::after {
+			content: '\25BC'; /* Unicode character for down arrow */
+			position: absolute;
+			top: 50%;
+			right: 10px;
+			transform: translateY(-50%);
+			color: #666;
+			pointer-events: none;
+		}
 
-        /* Hover and Focus Styles */
-        .custom-select:hover,
-        .custom-select select:focus {
-            border-color: #999;
-        }
+		/* Hover and Focus Styles */
+		.custom-select:hover,
+		.custom-select select:focus {
+			border-color: #999;
+		}
 
-        /* Disabled Style */
-        .custom-select select:disabled {
-            color: #999;
-            cursor: not-allowed;
-        }
+		/* Disabled Style */
+		.custom-select select:disabled {
+			color: #999;
+			cursor: not-allowed;
+		}
 
-        /* Option Style */
-        .custom-select select option {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            color: #333;
-        }
+		/* Option Style */
+		.custom-select select option {
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			color: #333;
+		}
 
-            /* Option Hover Style */
-            .custom-select select option:hover {
-                background-color: #f2f2f2;
-            }
+			/* Option Hover Style */
+			.custom-select select option:hover {
+				background-color: #f2f2f2;
+			}
+
+	/* Slider */
+	.carousel-item {
+		margin: 0px;
+	}
+
+	/*********   Slider Styles **********/
+	/*********   Slider Styles **********/
+	/*********   Slider Styles **********/
+	.carousel-item {
+		position: relative;
+	}
+
+	.slider-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+		z-index: 3; /* Ensure it's above the slider content */
+	}
+
+	.search-form {
+		position: relative;
+		z-index: 5;
+		width: 50% !important;
+		margin: auto;
+		text-align: center;
+		width: fit-content;
+		/*background-color: #4cbdc3b0;*/
+		/* background-color: #0000009c; */
+		padding: 20px;
+		border-radius: 15px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+		.search-form .form-select-lg {
+			width: 60% !important;
+			/* box-shadow: 0 5px 25px rgba(0, 0, 0, 1.5); */
+			margin: 10px 0px;
+			padding: 15px;
+			font-family: Arial, sans-serif;
+		}
+
+		.search-form .btn {
+			height: 55px;
+			margin-left: 20px;
+			padding: 7px !important;
+			font-size: 20px;
+		}
+	/*&&&&&&&&&&&&&  (Admin) &&&&&&&&&&&&&&&*/
+	/*&&&&&&&&&&&&&  (Admin) &&&&&&&&&&&&&&&*/
+	.admin{
+		position:relative;
+		margin-bottom: 130px;
+	}
+
+	.admin .overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 765px;
+		z-index: 1; /* Make sure it's higher than other elements */
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
+	.admin-content{
+		position: absolute; /* Position it absolutely within the .admin container */
+		top: 40%; /* Adjust top position as needed */
+		left: 50%; /* Adjust left position as needed */
+		transform: translate(-50%, -50%); /* Center the content horizontally and vertically */
+		z-index: 2;
+		color:white;
+	}
+	.admin-content p{
+		font-size:50px;
+		font-family:cursive;
+		font-weight:bolder;
+		}
+
+	.admin img{
+		width:100%;
+		height:765px;
+	}
 </style>
 
-<div style="position:relative;">
-    <section id="hero">
-        <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+@if (!User.IsInRole("Admin"))
+{
 
-            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+	<div class="slider" style="position:relative;">
+		<div id="hero">
+			<div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+				<ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+				<div class="carousel-inner " role="listbox">
+					<!-- Slide 1 -->
+					<div class="carousel-item active row" style="background-image: url(assets/img/slide/slide-1.jpg)">
+						<div class="slider-overlay"></div>
+						<form action="/ResearchResult/Index" method="get" class="search-form">
+							<h1></h1>
+							<select class="form-select-lg rounded" aria-label="specialist" style="color: #747470;" name="filterspecialist">
+								<option selected style="color: #747470;" hidden>Choose a specialization</option>
+								<option style="color: #747470;">Dermatology</option>
+								<option style="color: #747470;">Dentistry</option>
+								<option style="color: #747470;">Psychiatry</option>
+								<option style="color: #747470;">Pediatrics and New Born</option>
+								<option style="color: #747470;">Neurology</option>
+								<option style="color: #747470;">Orthopedics</option>
+								<option style="color: #747470;">Gynaecology</option>
+								<option style="color: #747470;">Ear, Nose and Throat</option>
+								<option style="color: #747470;">Allergy and Immunology</option>
+								<option style="color: #747470;">Audiology</option>
+								<option style="color: #747470;">Chest and Respiratory</option>
+								<option style="color: #747470;">Diabetes and Endocrinology</option>
+								<option style="color: #747470;">Diagnostic Radiology</option>
+								<option style="color: #747470;">Dietitian and Nutrition</option>
+								<option style="color: #747470;">Family Medicine</option>
+							</select>
+							<input type="submit" value="Search" class="btn btn-primary" />
+						</form>
+					</div>
 
-            <div class="carousel-inner " role="listbox">
+					<!-- Slide 2 -->
+					<div class="carousel-item row" style="background-image: url(assets/img/slide/slide-2.jpg)">
+						<div class="slider-overlay"></div>
+						<form action="/ResearchResult/Index" method="get" class="search-form">
+							<select class="form-select-lg rounded" aria-label="specialist" style="color: #747470;" name="filterspecialist">
+								<option selected style="color: #747470;" hidden>Choose a specialization</option>
+								<option style="color: #747470;">Dermatology</option>
+								<option style="color: #747470;">Dentistry</option>
+								<option style="color: #747470;">Psychiatry</option>
+								<option style="color: #747470;">Pediatrics and New Born</option>
+								<option style="color: #747470;">Neurology</option>
+								<option style="color: #747470;">Orthopedics</option>
+								<option style="color: #747470;">Gynaecology</option>
+								<option style="color: #747470;">Ear, Nose and Throat</option>
+								<option style="color: #747470;">Allergy and Immunology</option>
+								<option style="color: #747470;">Audiology</option>
+								<option style="color: #747470;">Chest and Respiratory</option>
+								<option style="color: #747470;">Diabetes and Endocrinology</option>
+								<option style="color: #747470;">Diagnostic Radiology</option>
+								<option style="color: #747470;">Dietitian and Nutrition</option>
+								<option style="color: #747470;">Family Medicine</option>
+							</select>
+							<input type="submit" value="Search" class="btn btn-primary" />
+						</form>
+					</div>
 
-                <!-- Slide 1 -->
-                <div class="carousel-item active row" style="background-image: url(assets/img/slide/slide-1.jpg)">
-                    <form action="/ResearchResult/Index" method="get" style="margin-bottom:200px; margin-left:1300px">
-                        <select class="form-select-lg w-25 rounded" aria-label="specialist" style="color: #747470;" name="filterspecialist">
-                                <option selected style="color: #747470;" hidden>Select specialist</option>
-                                <option style="color: #747470;">Dermatology</option>
-                                <option style="color: #747470;">Dentistry</option>
-                                <option style="color: #747470;">Psychiatry</option>
-                                <option style="color: #747470;">Pediatrics and New Born</option>
-                                <option style="color: #747470;">Neurology</option>
-                                <option style="color: #747470;">Orthopedics</option>
-                                <option style="color: #747470;">Gynaecology</option>
-                                <option style="color: #747470;">Ear, Nose and Throat</option>
-                                <option style="color: #747470;">Allergy and Immunology</option>
-                                <option style="color: #747470;">Audiology</option>
-                                <option style="color: #747470;">Chest and Respiratory</option>
-                                <option style="color: #747470;">Diabetes and Endocrinology</option>
-                                <option style="color: #747470;">Diagnostic Radiology</option>
-                                <option style="color: #747470;">Dietitian and Nutrition</option>
-                                <option style="color: #747470;">Family Medicine</option>
-                            </select>
-                            <input type="submit" value="Search" class="btn btn-danger" />
-                    </form>
-                </div>
+					<!-- Slide 3 -->
+					<div class="carousel-item row" style="background-image: url(assets/img/slide/slide-3.jpg)">
+						<div class="slider-overlay"></div>
+						<form action="/ResearchResult/Index" method="get" class="search-form">
+							<select class="form-select-lg rounded" aria-label="specialist" style="color: #747470;" name="filterspecialist">
+								<option selected style="color: #747470;" hidden>Choose a specialization</option>
+								<option style="color: #747470;">Dermatology</option>
+								<option style="color: #747470;">Dentistry</option>
+								<option style="color: #747470;">Psychiatry</option>
+								<option style="color: #747470;">Pediatrics and New Born</option>
+								<option style="color: #747470;">Neurology</option>
+								<option style="color: #747470;">Orthopedics</option>
+								<option style="color: #747470;">Gynaecology</option>
+								<option style="color: #747470;">Ear, Nose and Throat</option>
+								<option style="color: #747470;">Allergy and Immunology</option>
+								<option style="color: #747470;">Audiology</option>
+								<option style="color: #747470;">Chest and Respiratory</option>
+								<option style="color: #747470;">Diabetes and Endocrinology</option>
+								<option style="color: #747470;">Diagnostic Radiology</option>
+								<option style="color: #747470;">Dietitian and Nutrition</option>
+								<option style="color: #747470;">Family Medicine</option>
+							</select>
+							<input type="submit" value="Search" class="btn btn-primary" />
+						</form>
+					</div>
 
-                <!-- Slide 2 -->
-                <div class="carousel-item row" style="background-image: url(assets/img/slide/slide-2.jpg)">
-                    <form action="/ResearchResult/Index" method="get" style="margin-bottom:200px; margin-left:1300px">
-                        <select class="form-select-lg w-25 rounded" aria-label="specialist" style="color: #747470;" name="filterspecialist">
-                            <option selected style="color: #747470;" hidden>Select specialist</option>
-                            <option style="color: #747470;">Dermatology</option>
-                            <option style="color: #747470;">Dentistry</option>
-                            <option style="color: #747470;">Psychiatry</option>
-                            <option style="color: #747470;">Pediatrics and New Born</option>
-                            <option style="color: #747470;">Neurology</option>
-                            <option style="color: #747470;">Orthopedics</option>
-                            <option style="color: #747470;">Gynaecology</option>
-                            <option style="color: #747470;">Ear, Nose and Throat</option>
-                            <option style="color: #747470;">Allergy and Immunology</option>
-                            <option style="color: #747470;">Audiology</option>
-                            <option style="color: #747470;">Chest and Respiratory</option>
-                            <option style="color: #747470;">Diabetes and Endocrinology</option>
-                            <option style="color: #747470;">Diagnostic Radiology</option>
-                            <option style="color: #747470;">Dietitian and Nutrition</option>
-                            <option style="color: #747470;">Family Medicine</option>
-                        </select>
-                        <input type="submit" value="Search" class="btn btn-danger" />
-                    </form>
-                </div>
+				</div>
 
-                <!-- Slide 3 -->
-                <div class="carousel-item row" style="background-image: url(assets/img/slide/slide-3.jpg)">
-                    <form action="/ResearchResult/Index" method="get" style="margin-bottom:200px; margin-left:1300px">
-                        <select class="form-select-lg w-25 rounded" aria-label="specialist" style="color: #747470;" name="filterspecialist">
-                            <option selected style="color: #747470;" hidden>Select specialist</option>
-                            <option style="color: #747470;">Dermatology</option>
-                            <option style="color: #747470;">Dentistry</option>
-                            <option style="color: #747470;">Psychiatry</option>
-                            <option style="color: #747470;">Pediatrics and New Born</option>
-                            <option style="color: #747470;">Neurology</option>
-                            <option style="color: #747470;">Orthopedics</option>
-                            <option style="color: #747470;">Gynaecology</option>
-                            <option style="color: #747470;">Ear, Nose and Throat</option>
-                            <option style="color: #747470;">Allergy and Immunology</option>
-                            <option style="color: #747470;">Audiology</option>
-                            <option style="color: #747470;">Chest and Respiratory</option>
-                            <option style="color: #747470;">Diabetes and Endocrinology</option>
-                            <option style="color: #747470;">Diagnostic Radiology</option>
-                            <option style="color: #747470;">Dietitian and Nutrition</option>
-                            <option style="color: #747470;">Family Medicine</option>
-                        </select>
-                        <input type="submit" value="Search" class="btn btn-danger" />
-                    </form>
-                </div>
+				<a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+				</a>
 
-            </div>
+				<a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+					<span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+				</a>
 
-            @*  <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-            </a>
+			</div>
+		</div>
+		@*  <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+	<span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true" style="background-color:#3fbbc0;border-radius:50%;padding:30px 30px;"></span>
+	</a>
 
-            <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-            </a> *@
-
-        </div>
-    </section><!-- End Hero -->
-    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true" style="background-color:#3fbbc0;border-radius:50%;padding:30px 30px;"></span>
-    </a>
-
-    <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true" style="background-color:#3fbbc0;border-radius:50%;padding:30px 30px;"></span>
-    </a>
-</div>
-@* <div class="text-center">
+	<a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+	<span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true" style="background-color:#3fbbc0;border-radius:50%;padding:30px 30px;"></span>
+	</a> *@
+	</div>
+	@* <div class="text-center">
 <h1 class="display-4">Welcome</h1>
 </div> *@
-@* new section *@
-<div class="container">
+	@* new section *@
+	<div class="container">
 
-    <section id="featured-services" class="featured-services">
+		<section id="featured-services" class="featured-services">
 
-        <div class="container" data-aos="fade-up">
+			<div class="container" data-aos="fade-up">
 
-            <div class="row">
+				<div class="row">
 
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+					<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
 
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+						<div class="icon-box" data-aos="fade-up" data-aos-delay="100">
 
-                        <div class="icon"><i class="fas fa-heartbeat"></i></div>
+							<div class="icon"><i class="fas fa-heartbeat"></i></div>
 
-                        <h4 class="title"><a href="">Emergency Medical Response</a></h4>
+							<h4 class="title"><a href="">Emergency Medical Response</a></h4>
 
-                        <p class="description">Our highly trained medical team is available 24/7 to respond rapidly to medical emergencies. Whether it's a sudden illness, injury, or any other medical crisis.</p>
+							<p class="description">Our highly trained medical team is available 24/7 to respond rapidly to medical emergencies. Whether it's a sudden illness, injury, or any other medical crisis.</p>
 
-                    </div>
+						</div>
 
-                </div>
+					</div>
 
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+					<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
 
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+						<div class="icon-box" data-aos="fade-up" data-aos-delay="200">
 
-                        <div class="icon"><i class="fas fa-pills"></i></div>
+							<div class="icon"><i class="fas fa-pills"></i></div>
 
-                        <h4 class="title"><a href="">Telemedicine Consultations</a></h4>
+							<h4 class="title"><a href="">Telemedicine Consultations</a></h4>
 
-                        <p class="description">Access medical advice and consultations remotely through our telemedicine services. Speak with qualified healthcare professionals via video or phone call for non-emergency medical concerns.</p>
+							<p class="description">Access medical advice and consultations remotely through our telemedicine services. Speak with qualified healthcare professionals via video or phone call for non-emergency medical concerns.</p>
 
-                    </div>
+						</div>
 
-                </div>
+					</div>
 
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+					<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
 
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+						<div class="icon-box" data-aos="fade-up" data-aos-delay="300">
 
-                        <div class="icon"><i class="fas fa-thermometer"></i></div>
+							<div class="icon"><i class="fas fa-thermometer"></i></div>
 
-                        <h4 class="title"><a href="">Rehabilitation Services</a></h4>
+							<h4 class="title"><a href="">Rehabilitation Services</a></h4>
 
-                        <p class="description">Recover and rehabilitate effectively with our comprehensive rehabilitation services. Whether you're recovering from surgery, injury, or managing a chronic condition.</p>
+							<p class="description">Recover and rehabilitate effectively with our comprehensive rehabilitation services. Whether you're recovering from surgery, injury, or managing a chronic condition.</p>
 
-                    </div>
+						</div>
 
-                </div>
+					</div>
 
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+					<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
 
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+						<div class="icon-box" data-aos="fade-up" data-aos-delay="400">
 
-                        <div class="icon"><i class="fas fa-dna"></i></div>
+							<div class="icon"><i class="fas fa-dna"></i></div>
 
-                        <h4 class="title"><a href="">Home Healthcare</a></h4>
+							<h4 class="title"><a href="">Home Healthcare</a></h4>
 
-                        <p class="description">Receive quality medical care in the comfort of your own home with our home healthcare services. Our skilled professionals provide a wide range of medical treatments, nursing care, and assistance.</p>
+							<p class="description">Receive quality medical care in the comfort of your own home with our home healthcare services. Our skilled professionals provide a wide range of medical treatments, nursing care, and assistance.</p>
 
-                    </div>
+						</div>
 
-                </div>
+					</div>
 
-            </div>
+				</div>
 
-        </div>
+			</div>
 
-    </section><!-- End Featured Services Section -->
-    <!-- ======= Cta Section ======= -->
+		</section><!-- End Featured Services Section -->
+		<!-- ======= Cta Section ======= -->
 
-    <section id="cta" class="cta">
+		<section id="cta" class="cta">
 
-        <div class="container" data-aos="zoom-in">
+			<div class="container" data-aos="zoom-in">
 
-            <div class="text-center">
+				<div class="text-center">
 
-                <h3>In an emergency? Need help now?</h3>
+					<h3>In an emergency? Need help now?</h3>
 
-                <p> In an emergency, every second counts. Whether it's a medical crisis, a natural disaster, or a sudden accident, swift action is crucial. In these critical moments, individuals often find themselves overwhelmed, unsure of what steps to take next.</p>
+					<p> In an emergency, every second counts. Whether it's a medical crisis, a natural disaster, or a sudden accident, swift action is crucial. In these critical moments, individuals often find themselves overwhelmed, unsure of what steps to take next.</p>
 
-                <a class="cta-btn scrollto" href="\pateint\Book">Make an Make an Appointment</a>
+					<a class="cta-btn scrollto" href="\pateint\Book">Make an Make an Appointment</a>
 
-            </div>
+				</div>
 
-        </div>
+			</div>
 
-    </section><!-- End Cta Section -->
-    <!-- ======= Features Section ======= -->
+		</section><!-- End Cta Section -->
+		<!-- ======= Features Section ======= -->
 
-    <section id="features" class="features">
+		<section id="features" class="features">
 
-        <div class="container" data-aos="fade-up">
+			<div class="container" data-aos="fade-up">
 
-            <div class="row">
+				<div class="row">
 
-                <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right">
+					<div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right">
 
-                    <div class="icon-box mt-5 mt-lg-0">
+						<div class="icon-box mt-5 mt-lg-0">
 
-                        <i class="bx bx-receipt"></i>
+							<i class="bx bx-receipt"></i>
 
-                        <h4>Physical Therapy</h4>
+							<h4>Physical Therapy</h4>
 
-                        <p>Rehabilitation and exercise programs to restore mobility and function.</p>
+							<p>Rehabilitation and exercise programs to restore mobility and function.</p>
 
-                    </div>
+						</div>
 
-                    <div class="icon-box mt-5">
+						<div class="icon-box mt-5">
 
-                        <i class="bx bx-cube-alt"></i>
+							<i class="bx bx-cube-alt"></i>
 
-                        <h4>Cancer Care</h4>
+							<h4>Cancer Care</h4>
 
-                        <p>Comprehensive cancer treatment including chemotherapy, radiation, and supportive care services.</p>
+							<p>Comprehensive cancer treatment including chemotherapy, radiation, and supportive care services.</p>
 
-                    </div>
+						</div>
 
-                    <div class="icon-box mt-5">
+						<div class="icon-box mt-5">
 
-                        <i class="bx bx-images"></i>
+							<i class="bx bx-images"></i>
 
-                        <h4>Geriatric Care</h4>
+							<h4>Geriatric Care</h4>
 
-                        <p>Specialized healthcare for the elderly, including geriatric assessments and support services.</p>
+							<p>Specialized healthcare for the elderly, including geriatric assessments and support services.</p>
 
-                    </div>
+						</div>
 
-                    <div class="icon-box mt-5">
+						<div class="icon-box mt-5">
 
-                        <i class="bx bx-shield"></i>
+							<i class="bx bx-shield"></i>
 
-                        <h4>Pain Management</h4>
+							<h4>Pain Management</h4>
 
-                        <p>Multidisciplinary approach to alleviate chronic pain and improve quality of life.</p>
+							<p>Multidisciplinary approach to alleviate chronic pain and improve quality of life.</p>
 
-                    </div>
+						</div>
 
-                </div>
+					</div>
 
-                <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/features.jpg");' data-aos="zoom-in"></div>
+					<div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/features.jpg");' data-aos="zoom-in"></div>
 
-            </div>
+				</div>
 
-        </div>
+			</div>
 
-    </section><!-- End Features Section -->
-    <!-- ======= Doctors Section ======= -->
+		</section><!-- End Features Section -->
+		<!-- ======= Doctors Section ======= -->
 
-    <section id="doctors" class="doctors section-bg">
+		<section id="doctors" class="doctors section-bg">
 
-        <div class="container" data-aos="fade-up">
+			<div class="container" data-aos="fade-up">
 
-            <div class="section-title">
+				<div class="section-title">
 
-                <h2>Doctors</h2>
+					<h2>Doctors</h2>
 
-                <p>Doctors play a crucial role in healthcare, providing expert medical care to patients across all ages and demographics. They possess in-depth knowledge of human anatomy, physiology, and medical science, allowing them to assess symptoms, order diagnostic tests, and develop treatment plans tailored to each patient's unique needs.</p>
+					<p>Doctors play a crucial role in healthcare, providing expert medical care to patients across all ages and demographics. They possess in-depth knowledge of human anatomy, physiology, and medical science, allowing them to assess symptoms, order diagnostic tests, and develop treatment plans tailored to each patient's unique needs.</p>
 
-            </div>
+				</div>
 
-            <div class="row">
+				<div class="row">
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+					<div class="col-lg-3 col-md-6 d-flex align-items-stretch">
 
-                    <div class="member" data-aos="fade-up" data-aos-delay="100">
+						<div class="member" data-aos="fade-up" data-aos-delay="100">
 
-                        <div class="member-img">
+							<div class="member-img">
 
-                            <img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="">
+								<img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="">
 
-                            <div class="social">
+								<div class="social">
 
-                                <a href=""><i class="bi bi-twitter"></i></a>
+									<a href=""><i class="bi bi-twitter"></i></a>
 
-                                <a href=""><i class="bi bi-facebook"></i></a>
+									<a href=""><i class="bi bi-facebook"></i></a>
 
-                                <a href=""><i class="bi bi-instagram"></i></a>
+									<a href=""><i class="bi bi-instagram"></i></a>
 
-                                <a href=""><i class="bi bi-linkedin"></i></a>
+									<a href=""><i class="bi bi-linkedin"></i></a>
 
-                            </div>
+								</div>
 
-                        </div>
+							</div>
 
-                        <div class="member-info">
+							<div class="member-info">
 
-                            <h4>Walter White</h4>
+								<h4>Walter White</h4>
 
-                            <span>Chief Medical Officer</span>
+								<span>Chief Medical Officer</span>
 
-                        </div>
+							</div>
 
-                    </div>
+						</div>
 
-                </div>
+					</div>
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+					<div class="col-lg-3 col-md-6 d-flex align-items-stretch">
 
-                    <div class="member" data-aos="fade-up" data-aos-delay="200">
+						<div class="member" data-aos="fade-up" data-aos-delay="200">
 
-                        <div class="member-img">
+							<div class="member-img">
 
-                            <img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt="">
+								<img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt="">
 
-                            <div class="social">
+								<div class="social">
 
-                                <a href=""><i class="bi bi-twitter"></i></a>
+									<a href=""><i class="bi bi-twitter"></i></a>
 
-                                <a href=""><i class="bi bi-facebook"></i></a>
+									<a href=""><i class="bi bi-facebook"></i></a>
 
-                                <a href=""><i class="bi bi-instagram"></i></a>
+									<a href=""><i class="bi bi-instagram"></i></a>
 
-                                <a href=""><i class="bi bi-linkedin"></i></a>
+									<a href=""><i class="bi bi-linkedin"></i></a>
 
-                            </div>
+								</div>
 
-                        </div>
+							</div>
 
-                        <div class="member-info">
+							<div class="member-info">
 
-                            <h4>Sarah Jhonson</h4>
+								<h4>Sarah Jhonson</h4>
 
-                            <span>Anesthesiologist</span>
+								<span>Anesthesiologist</span>
 
-                        </div>
+							</div>
 
-                    </div>
+						</div>
 
-                </div>
+					</div>
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+					<div class="col-lg-3 col-md-6 d-flex align-items-stretch">
 
-                    <div class="member" data-aos="fade-up" data-aos-delay="300">
+						<div class="member" data-aos="fade-up" data-aos-delay="300">
 
-                        <div class="member-img">
+							<div class="member-img">
 
-                            <img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt="">
+								<img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt="">
 
-                            <div class="social">
+								<div class="social">
 
-                                <a href=""><i class="bi bi-twitter"></i></a>
+									<a href=""><i class="bi bi-twitter"></i></a>
 
-                                <a href=""><i class="bi bi-facebook"></i></a>
+									<a href=""><i class="bi bi-facebook"></i></a>
 
-                                <a href=""><i class="bi bi-instagram"></i></a>
+									<a href=""><i class="bi bi-instagram"></i></a>
 
-                                <a href=""><i class="bi bi-linkedin"></i></a>
+									<a href=""><i class="bi bi-linkedin"></i></a>
 
-                            </div>
+								</div>
 
-                        </div>
+							</div>
 
-                        <div class="member-info">
+							<div class="member-info">
 
-                            <h4>William Anderson</h4>
+								<h4>William Anderson</h4>
 
-                            <span>Cardiology</span>
+								<span>Cardiology</span>
 
-                        </div>
+							</div>
 
-                    </div>
+						</div>
 
-                </div>
+					</div>
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+					<div class="col-lg-3 col-md-6 d-flex align-items-stretch">
 
-                    <div class="member" data-aos="fade-up" data-aos-delay="400">
+						<div class="member" data-aos="fade-up" data-aos-delay="400">
 
-                        <div class="member-img">
+							<div class="member-img">
 
-                            <img src="assets/img/doctors/doctors-4.jpg" class="img-fluid" alt="">
+								<img src="assets/img/doctors/doctors-4.jpg" class="img-fluid" alt="">
 
-                            <div class="social">
+								<div class="social">
 
-                                <a href=""><i class="bi bi-twitter"></i></a>
+									<a href=""><i class="bi bi-twitter"></i></a>
 
-                                <a href=""><i class="bi bi-facebook"></i></a>
+									<a href=""><i class="bi bi-facebook"></i></a>
 
-                                <a href=""><i class="bi bi-instagram"></i></a>
+									<a href=""><i class="bi bi-instagram"></i></a>
 
-                                <a href=""><i class="bi bi-linkedin"></i></a>
+									<a href=""><i class="bi bi-linkedin"></i></a>
 
-                            </div>
+								</div>
 
-                        </div>
+							</div>
 
-                        <div class="member-info">
+							<div class="member-info">
 
-                            <h4>Amanda Jepson</h4>
+								<h4>Amanda Jepson</h4>
 
-                            <span>Neurosurgeon</span>
+								<span>Neurosurgeon</span>
 
-                        </div>
+							</div>
 
-                    </div>
+						</div>
 
-                </div>
+					</div>
 
-            </div>
+				</div>
 
-        </div>
+			</div>
 
-    </section><!-- End Doctors Section -->
-    <!-- ======= Gallery Section ======= -->
+		</section><!-- End Doctors Section -->
+		<!-- ======= Gallery Section ======= -->
 
-    <section id="gallery" class="gallery">
+		<section id="gallery" class="gallery">
 
-        <div class="container" data-aos="fade-up">
+			<div class="container" data-aos="fade-up">
 
-            <div class="section-title">
+				<div class="section-title">
 
-                <h2>Gallery</h2>
+					<h2>Gallery</h2>
 
-                <p>Vezeeta serve as hubs for medical diagnosis, treatment, and rehabilitation across various specialties, including emergency medicine, surgery, internal medicine, pediatrics, obstetrics and gynecology, and more. They offer comprehensive care to patients of all ages and backgrounds, addressing both acute and chronic health conditions</p>
+					<p>Vezeeta serve as hubs for medical diagnosis, treatment, and rehabilitation across various specialties, including emergency medicine, surgery, internal medicine, pediatrics, obstetrics and gynecology, and more. They offer comprehensive care to patients of all ages and backgrounds, addressing both acute and chronic health conditions</p>
 
-            </div>
+				</div>
 
-            <div class="gallery-slider swiper">
+				<div class="gallery-slider swiper">
 
-                <div class="swiper-wrapper align-items-center">
+					<div class="swiper-wrapper align-items-center">
 
-                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
+						<div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
 
-                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
+						<div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
 
-                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
+						<div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
 
-                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
+						<div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
 
-                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
+						<div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
 
-                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
+						<div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
 
-                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
+						<div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
 
-                    <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
+						<div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
 
-                </div>
+					</div>
 
-                <div class="swiper-pagination"></div>
+					<div class="swiper-pagination"></div>
 
-            </div>
+				</div>
 
-        </div>
+			</div>
 
-    </section>
-</div>
+		</section>
+	</div>
 
+}
+else
+{
+	<div class="admin">
+		<div class="overlay"></div>
+		<img src="/assets/img/admin2.jpg" />
+		<div class="admin-content">
+			<p> Welcome to Vezeeta Dashboard </p>
+		</div>
+	</div>
+}
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>

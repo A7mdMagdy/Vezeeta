@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Vezeeta.Data;
@@ -11,10 +12,12 @@ namespace Vezeeta.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext Context;
-        public HomeController(ILogger<HomeController> logger , ApplicationDbContext _context)
+        private readonly UserManager<AppUser> UserManager;
+        public HomeController(ILogger<HomeController> logger , ApplicationDbContext _context , UserManager<AppUser> _userManager)
         {
             _logger = logger;
             Context = _context;
+            UserManager = _userManager;
         }
         //[Authorize(Roles ="Doctor,Patient")]
         public IActionResult Index()
@@ -25,6 +28,7 @@ namespace Vezeeta.Controllers
         [Authorize]
         public IActionResult Privacy()
         {
+            var id = UserManager.GetUserId(User);
             return View();
         }
 
